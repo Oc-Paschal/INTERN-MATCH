@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer Intern",
+    "company": "Paystack",
+    "location": "Lagos",
+    "type": "Remote",
+    "posted": "2d ago",
+    "skills": [
+      "React",
+      "TypeScript",
+      "CSS"
+    ],
+    "match": 92,
+    "category": "Engineering"
+  },
+  {
+    "id": 2,
+    "title": "Data Science Intern",
+    "company": "Flutterwave",
+    "location": "Lagos",
+    "type": "Hybrid",
+    "posted": "3d ago",
+    "skills": [
+      "Python",
+      "Pandas",
+      "SQL"
+    ],
+    "match": 85,
+    "category": "Data"
+  },
+  {
+    "id": 3,
+    "title": "Product Design Intern",
+    "company": "Andela",
+    "location": "Remote",
+    "type": "Remote",
+    "posted": "1d ago",
+    "skills": [
+      "Figma",
+      "UI/UX",
+      "Prototyping"
+    ],
+    "match": 78,
+    "category": "Design"
+  },
+  {
+    "id": 4,
+    "title": "Backend Engineer Intern",
+    "company": "Kuda Bank",
+    "location": "Lagos",
+    "type": "On-site",
+    "posted": "5d ago",
+    "skills": [
+      "Node.js",
+      "PostgreSQL",
+      "REST APIs"
+    ],
+    "match": 88,
+    "category": "Engineering"
+  },
+  {
+    "id": 5,
+    "title": "Mobile Developer Intern",
+    "company": "Cowrywise",
+    "location": "Lagos",
+    "type": "Remote",
+    "posted": "4d ago",
+    "skills": [
+      "React Native",
+      "JavaScript",
+      "Firebase"
+    ],
+    "match": 73,
+    "category": "Engineering"
+  },
+  {
+    "id": 6,
+    "title": "AI/ML Intern",
+    "company": "Interswitch",
+    "location": "Lagos",
+    "type": "Hybrid",
+    "posted": "7d ago",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "NLP"
+    ],
+    "match": 65,
+    "category": "Data"
+  },
+  {
+    "id": 7,
+    "title": "Marketing Intern",
+    "company": "Jumia",
+    "location": "Abuja",
+    "type": "On-site",
+    "posted": "2d ago",
+    "skills": [
+      "SEO",
+      "Content",
+      "Analytics"
+    ],
+    "match": 70,
+    "category": "Marketing"
+  },
+  {
+    "id": 8,
+    "title": "Operations Intern",
+    "company": "Zenith Bank",
+    "location": "Port Harcourt",
+    "type": "On-site",
+    "posted": "1d ago",
+    "skills": [
+      "Excel",
+      "Reporting",
+      "Data Entry"
+    ],
+    "match": 60,
+    "category": "Operations"
+  }
+]

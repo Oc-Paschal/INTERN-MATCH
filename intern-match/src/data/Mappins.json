@@ -1,0 +1,43 @@
+[
+  {
+    "x": 430,
+    "y": 295,
+    "match": 82,
+    "title": "Software Eng Intern",
+    "company": "Interswitch",
+    "city": "Abuja"
+  },
+  {
+    "x": 395,
+    "y": 345,
+    "match": 68,
+    "title": "Data Science Intern",
+    "company": "Flutterwave",
+    "city": "Lagos"
+  },
+  {
+    "x": 390,
+    "y": 355,
+    "match": 77,
+    "title": "Frontend Dev Intern",
+    "company": "Paystack",
+    "city": "Lagos"
+  },
+  {
+    "x": 450,
+    "y": 390,
+    "match": 71,
+    "title": "Electrical Eng Intern",
+    "company": "Dangote Group",
+    "city": "Port Harcourt",
+    "active": true
+  },
+  {
+    "x": 450,
+    "y": 400,
+    "match": 7,
+    "title": "Mobile Dev Intern",
+    "company": "Cowrywise",
+    "city": "Port Harcourt"
+  }
+]
