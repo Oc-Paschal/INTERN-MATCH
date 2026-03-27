@@ -1,5 +1,5 @@
-import { CompanyIcon } from "./shared/CompanyIcon";
-import { MatchBadge, TypeBadge } from "./shared/Badges";
+import { CompanyIcon } from "./Shared/CompanyIcon";
+import { MatchBadge, TypeBadge } from "./Shared/Badges";
  
 export const InternshipCard = ({ intern, grid = false }) => (
   <div

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo } from "./shared/Logo";
+import { Logo } from "../Component/Shared/Logo";
  
 export const Nav = ({ page, setPage, mobile }) => {
   const [menuOpen, setMenuOpen] = useState(false);
