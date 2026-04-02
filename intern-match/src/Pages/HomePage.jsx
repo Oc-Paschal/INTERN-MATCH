@@ -27,222 +27,88 @@ export const HomePage = ({ setPage }) => (
   <div style={{ fontFamily: "'Georgia', serif" }}>
  
     {/* ── Hero ── */}
-    <section
-      style={{
-        background: "linear-gradient(135deg, #f0faf4 0%, #e8f5ee 50%, #f7fdf9 100%)",
-        padding: "80px 40px 100px",
-        maxWidth: 900,
-        margin: "0 auto",
-      }}
-    >
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          background: "white",
-          border: "1px solid #d1fae5",
-          borderRadius: 20,
-          padding: "6px 14px",
-          marginBottom: 28,
-        }}
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a5c38" strokeWidth="2.5">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-        <span style={{ fontSize: 13, fontWeight: 600, color: "#1a5c38" }}>
-          AI-Powered Internship Matching
-        </span>
-      </div>
+    <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-white px-6 md:px-16 py-20">
+      <div className="max-w-3xl mx-auto">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-white border border-green-200 rounded-full px-4 py-1.5 mb-7">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#15803d" strokeWidth="2.5">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+          <span className="text-xs font-semibold text-green-700">AI-Powered Internship Matching</span>
+        </div>
  
-      <h1
-        style={{
-          fontSize: "clamp(36px, 5vw, 56px)",
-          fontWeight: 800,
-          lineHeight: 1.1,
-          margin: "0 0 20px",
-          color: "#0f0f0f",
-          letterSpacing: "-0.03em",
-        }}
-      >
-        Find Your Perfect
-        <br />
-        <span style={{ color: "#1a5c38" }}>Internship</span> Match in Nigeria
-      </h1>
+        {/* Heading */}
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight mb-5">
+          Find Your Perfect <br />
+          <span className="text-green-800">Internship</span> Match in Nigeria
+        </h1>
  
-      <p
-        style={{
-          fontSize: 17,
-          color: "#4b5563",
-          maxWidth: 520,
-          lineHeight: 1.7,
-          marginBottom: 36,
-          fontFamily: "system-ui, sans-serif",
-          fontWeight: 400,
-        }}
-      >
-        Smart matching connects Nigerian students with top internship opportunities
-        based on your skills, interests, and career goals.
-      </p>
+        <p className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-9 font-normal" style={{ fontFamily: "system-ui, sans-serif" }}>
+          Smart matching connects Nigerian students with top internship opportunities
+          based on your skills, interests, and career goals.
+        </p>
  
-      <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-        <button
-          onClick={() => setPage("internships")}
-          style={{
-            background: "#1a5c38",
-            color: "white",
-            border: "none",
-            borderRadius: 10,
-            padding: "13px 26px",
-            fontSize: 15,
-            fontWeight: 700,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            fontFamily: "'Georgia', serif",
-          }}
-        >
-          Browse Internships <span>→</span>
-        </button>
-        <button
-          onClick={() => setPage("profile")}
-          style={{
-            background: "white",
-            color: "#1a1a1a",
-            border: "2px solid #e5e7eb",
-            borderRadius: 10,
-            padding: "13px 26px",
-            fontSize: 15,
-            fontWeight: 600,
-            cursor: "pointer",
-            fontFamily: "'Georgia', serif",
-          }}
-        >
-          Create Your Profile
-        </button>
-      </div>
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-4 mb-12">
+          <button
+            onClick={() => setPage("internships")}
+            className="bg-green-900 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-800 transition-colors flex items-center gap-2"
+          >
+            Browse Internships <span>→</span>
+          </button>
+          <button
+            onClick={() => setPage("profile")}
+            className="bg-white text-gray-800 font-semibold px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-colors"
+          >
+            Create Your Profile
+          </button>
+        </div>
  
-      <div style={{ display: "flex", gap: 40, marginTop: 48 }}>
-        {[["5,000+", "Students"], ["200+", "Companies"], ["92%", "Match Rate"]].map(([n, l]) => (
-          <div key={l}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: "#0f0f0f" }}>{n}</div>
-            <div style={{ fontSize: 13, color: "#6b7280", fontFamily: "system-ui, sans-serif" }}>{l}</div>
-          </div>
-        ))}
+        {/* Stats */}
+        <div className="flex gap-10">
+          {[["5,000+", "Students"], ["200+", "Companies"], ["92%", "Match Rate"]].map(([n, l]) => (
+            <div key={l}>
+              <p className="text-xl font-extrabold text-gray-900">{n}</p>
+              <p className="text-xs text-gray-500 mt-0.5" style={{ fontFamily: "system-ui, sans-serif" }}>{l}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
  
     {/* ── Why Section ── */}
-    <section style={{ padding: "80px 40px", background: "white", textAlign: "center" }}>
-      <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 10, letterSpacing: "-0.02em" }}>
-        Why InternMatch NG?
-      </h2>
-      <p
-        style={{
-          fontSize: 16,
-          color: "#6b7280",
-          marginBottom: 52,
-          fontFamily: "system-ui, sans-serif",
-        }}
-      >
+    <section className="bg-white px-6 md:px-16 py-20 text-center">
+      <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-3">Why InternMatch NG?</h2>
+      <p className="text-gray-500 mb-14" style={{ fontFamily: "system-ui, sans-serif" }}>
         Built for Nigerian students, powered by AI, designed for real-world impact.
       </p>
  
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: 20,
-          maxWidth: 960,
-          margin: "0 auto",
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
         {features.map((f) => (
-          <div
-            key={f.title}
-            style={{
-              background: "#f9fafb",
-              borderRadius: 14,
-              padding: "28px 22px",
-              textAlign: "left",
-              border: "1px solid #f3f4f6",
-            }}
-          >
-            <div
-              style={{
-                width: 44,
-                height: 44,
-                background: "#dcfce7",
-                borderRadius: 10,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 20,
-                color: "#1a5c38",
-                marginBottom: 16,
-              }}
-            >
+          <div key={f.title} className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-left">
+            <div className="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center text-green-800 text-xl mb-4">
               {f.icon}
             </div>
-            <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>{f.title}</div>
-            <div
-              style={{
-                fontSize: 14,
-                color: "#6b7280",
-                lineHeight: 1.6,
-                fontFamily: "system-ui, sans-serif",
-              }}
-            >
+            <p className="font-bold text-gray-900 mb-2">{f.title}</p>
+            <p className="text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "system-ui, sans-serif" }}>
               {f.desc}
-            </div>
+            </p>
           </div>
         ))}
       </div>
     </section>
  
-    {/* ── CTA ── */}
-    <section
-      style={{
-        background: "linear-gradient(135deg, #1a5c38 0%, #0f3d25 100%)",
-        padding: "80px 40px",
-        textAlign: "center",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: 32,
-          fontWeight: 800,
-          color: "white",
-          marginBottom: 12,
-          letterSpacing: "-0.02em",
-        }}
-      >
+    {/* ── CTA Banner ── */}
+    <section className="bg-gradient-to-br from-green-900 to-green-950 px-6 py-20 text-center">
+      <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">
         Ready to Land Your Dream Internship?
       </h2>
-      <p
-        style={{
-          fontSize: 16,
-          color: "#86efac",
-          marginBottom: 36,
-          fontFamily: "system-ui, sans-serif",
-        }}
-      >
+      <p className="text-green-300 mb-9" style={{ fontFamily: "system-ui, sans-serif" }}>
         Join thousands of Nigerian students already finding their perfect match.
       </p>
       <button
         onClick={() => setPage("profile")}
-        style={{
-          background: "#f59e0b",
-          color: "#0f0f0f",
-          border: "none",
-          borderRadius: 10,
-          padding: "14px 30px",
-          fontSize: 15,
-          fontWeight: 700,
-          cursor: "pointer",
-          fontFamily: "'Georgia', serif",
-        }}
+        className="bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-xl hover:bg-yellow-300 transition-colors"
       >
         Get Started Free →
       </button>

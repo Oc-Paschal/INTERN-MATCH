@@ -1,40 +1,60 @@
 import { useState } from "react";
-import { Logo } from "../Component/Shared/Logo";
+import { Logo } from "./shared/Logo";
  
-export const Nav = ({ page, setPage, mobile }) => {
+const navLinks = [
+  ["home", "Home"],
+  ["internships", "Internships"],
+  ["profile", "My Profile"],
+];
+ 
+export const Nav = ({ page, setPage }) => {
   const [menuOpen, setMenuOpen] = useState(false);
  
-  const navLinks = [
-    ["home", "Home"],
-    ["internships", "Internships"],
-    ["profile", "My Profile"],
-  ];
- 
-  if (mobile) {
-    return (
-      <nav
-        style={{
-          background: "white",
-          borderBottom: "1px solid #e5e7eb",
-          padding: "12px 16px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-        }}
-      >
-        <button
-          onClick={() => setPage("home")}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
-        >
-          <Logo size={28} />
+  return (
+    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      {/* Desktop */}
+      <div className="hidden md:flex items-center justify-between px-10 h-16">
+        <button onClick={() => setPage("home")} className="bg-transparent border-none cursor-pointer p-0">
+          <Logo size="md" />
         </button>
  
+        <div className="flex items-center gap-8">
+          {navLinks.map(([p, l]) => (
+            <button
+              key={p}
+              onClick={() => setPage(p)}
+              className={`bg-transparent border-none cursor-pointer text-sm font-medium pb-0.5 ${
+                page === p
+                  ? "text-green-900 border-b-2 border-green-900"
+                  : "text-gray-500 hover:text-gray-800"
+              }`}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+ 
+        <div className="flex items-center gap-3">
+          <button className="bg-transparent border-none cursor-pointer text-sm font-medium text-gray-700 hover:text-gray-900">
+            Sign In
+          </button>
+          <button
+            onClick={() => setPage("profile")}
+            className="bg-green-900 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition-colors"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+ 
+      {/* Mobile */}
+      <div className="flex md:hidden items-center justify-between px-4 py-3">
+        <button onClick={() => setPage("home")} className="bg-transparent border-none cursor-pointer p-0">
+          <Logo size="sm" />
+        </button>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 4 }}
+          className="bg-transparent border-none cursor-pointer p-1"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" strokeWidth="2.5">
             <line x1="3" y1="6" x2="21" y2="6" />
@@ -42,122 +62,24 @@ export const Nav = ({ page, setPage, mobile }) => {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
         </button>
- 
-        {menuOpen && (
-          <div
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              right: 0,
-              background: "white",
-              borderBottom: "1px solid #e5e7eb",
-              padding: "8px 0",
-              zIndex: 100,
-            }}
-          >
-            {navLinks.map(([p, l]) => (
-              <button
-                key={p}
-                onClick={() => { setPage(p); setMenuOpen(false); }}
-                style={{
-                  display: "block",
-                  width: "100%",
-                  textAlign: "left",
-                  padding: "10px 20px",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontWeight: page === p ? 700 : 400,
-                  color: page === p ? "#1a5c38" : "#374151",
-                  fontFamily: "system-ui, sans-serif",
-                  fontSize: 14,
-                }}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-        )}
-      </nav>
-    );
-  }
- 
-  return (
-    <nav
-      style={{
-        background: "white",
-        borderBottom: "1px solid #e5e7eb",
-        padding: "0 40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: 60,
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-      }}
-    >
-      <button
-        onClick={() => setPage("home")}
-        style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
-      >
-        <Logo size={30} />
-      </button>
- 
-      <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-        {navLinks.map(([p, l]) => (
-          <button
-            key={p}
-            onClick={() => setPage(p)}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              fontSize: 14,
-              fontWeight: 500,
-              color: page === p ? "#1a5c38" : "#6b7280",
-              borderBottom: page === p ? "2px solid #1a5c38" : "2px solid transparent",
-              paddingBottom: 2,
-              fontFamily: "system-ui, sans-serif",
-            }}
-          >
-            {l}
-          </button>
-        ))}
       </div>
  
-      <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-        <button
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            fontSize: 14,
-            fontWeight: 500,
-            color: "#374151",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
-          Sign In
-        </button>
-        <button
-          onClick={() => setPage("profile")}
-          style={{
-            background: "#1a5c38",
-            color: "white",
-            border: "none",
-            borderRadius: 8,
-            padding: "8px 18px",
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: "pointer",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
-          Get Started
-        </button>
-      </div>
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="md:hidden border-t border-gray-200 bg-white py-2">
+          {navLinks.map(([p, l]) => (
+            <button
+              key={p}
+              onClick={() => { setPage(p); setMenuOpen(false); }}
+              className={`block w-full text-left px-5 py-3 text-sm bg-transparent border-none cursor-pointer ${
+                page === p ? "font-bold text-green-900" : "font-normal text-gray-700"
+              }`}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };

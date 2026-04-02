@@ -1,169 +1,93 @@
 import { useState } from "react";
-import { Footer } from "../Component/Shared/Footer";
+import { Footer } from "./Component/shared/Footer";
  
 const SUGGESTED_SKILLS = ["JavaScript", "Figma", "Node.js", "SQL", "Django", "Flutter"];
  
+const inputClass =
+  "w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-green-700 transition-colors";
+ 
 export const ProfilePage = () => {
-  const [skills, setSkills]       = useState(["React", "TypeScript", "Python"]);
+  const [skills, setSkills]         = useState(["React", "TypeScript", "Python"]);
   const [skillInput, setSkillInput] = useState("");
-  const [saved, setSaved]         = useState(false);
+  const [saved, setSaved]           = useState(false);
  
   const addSkill = (s) => {
-    const trimmed = s.trim();
-    if (trimmed && !skills.includes(trimmed)) setSkills([...skills, trimmed]);
+    const t = s.trim();
+    if (t && !skills.includes(t)) setSkills([...skills, t]);
     setSkillInput("");
   };
- 
   const removeSkill = (s) => setSkills(skills.filter((x) => x !== s));
- 
-  const handleSave = () => {
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-  };
- 
-  const inputStyle = {
-    width: "100%",
-    border: "1.5px solid #e5e7eb",
-    borderRadius: 8,
-    padding: "10px 14px",
-    fontSize: 14,
-    fontFamily: "system-ui, sans-serif",
-    outline: "none",
-    boxSizing: "border-box",
-  };
+  const handleSave  = () => { setSaved(true); setTimeout(() => setSaved(false), 2000); };
  
   return (
-    <div style={{ background: "#f9fafb", minHeight: "100vh", fontFamily: "'Georgia', serif" }}>
-      <div style={{ maxWidth: 600, margin: "0 auto", padding: "40px 20px" }}>
+    <div className="bg-gray-50 min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
+      <div className="max-w-xl mx-auto px-4 py-10">
  
-        <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 4, letterSpacing: "-0.02em" }}>
-          Your Profile
-        </h1>
-        <p style={{ fontSize: 14, color: "#6b7280", marginBottom: 32, fontFamily: "system-ui, sans-serif" }}>
+        <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-1">Your Profile</h1>
+        <p className="text-sm text-gray-500 mb-8" style={{ fontFamily: "system-ui, sans-serif" }}>
           Complete your profile to get better internship matches
         </p>
  
         {/* ── Basic Info ── */}
-        <div
-          style={{
-            background: "white",
-            borderRadius: 16,
-            padding: "24px",
-            marginBottom: 20,
-            border: "1px solid #e5e7eb",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
-            <span style={{ fontSize: 18 }}>👤</span>
-            <h2 style={{ fontSize: 17, fontWeight: 800, margin: 0 }}>Basic Information</h2>
+        <div className="bg-white rounded-2xl p-6 mb-5 border border-gray-200">
+          <div className="flex items-center gap-2 mb-5">
+            <span className="text-lg">👤</span>
+            <h2 className="text-base font-extrabold text-gray-900 m-0">Basic Information</h2>
           </div>
  
-          <div style={{ display: "grid", gap: 14 }}>
+          <div className="grid gap-4">
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                Full Name
-              </label>
-              <input
-                defaultValue="Adebayo Ogunlesi"
-                style={inputStyle}
-                onFocus={(e) => (e.target.style.borderColor = "#1a5c38")}
-                onBlur={(e) => (e.target.style.borderColor = "#e5e7eb")}
-              />
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Full Name</label>
+              <input defaultValue="Adebayo Ogunlesi" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
  
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                Email
-              </label>
-              <input defaultValue="adebayo@email.com" style={inputStyle} />
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Email</label>
+              <input defaultValue="adebayo@email.com" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
  
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            <div className="grid grid-cols-2 gap-4">
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                  📍 Preferred Location
-                </label>
-                <div style={{ position: "relative" }}>
-                  <input
-                    defaultValue="Lagos, Nigeria"
-                    style={{ ...inputStyle, paddingRight: 36 }}
-                  />
-                  <span
-                    style={{
-                      position: "absolute",
-                      right: 10,
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "#9ca3af",
-                    }}
-                  >
-                    ◈
-                  </span>
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>📍 Preferred Location</label>
+                <div className="relative">
+                  <input defaultValue="Lagos, Nigeria" className={`${inputClass} pr-8`} style={{ fontFamily: "system-ui, sans-serif" }} />
+                  <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm">◈</span>
                 </div>
               </div>
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                  ⊞ Course of Study
-                </label>
-                <input defaultValue="Computer Science" style={inputStyle} />
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>⊞ Course of Study</label>
+                <input defaultValue="Computer Science" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
               </div>
             </div>
  
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                Bio
-              </label>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Bio</label>
               <textarea
                 placeholder="Tell companies about yourself..."
                 rows={4}
-                style={{ ...inputStyle, resize: "vertical" }}
+                className={`${inputClass} resize-y`}
+                style={{ fontFamily: "system-ui, sans-serif" }}
               />
             </div>
           </div>
         </div>
  
         {/* ── Skills ── */}
-        <div
-          style={{
-            background: "white",
-            borderRadius: 16,
-            padding: "24px",
-            marginBottom: 20,
-            border: "1px solid #e5e7eb",
-          }}
-        >
-          <h2 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 16px" }}>Skills</h2>
+        <div className="bg-white rounded-2xl p-6 mb-5 border border-gray-200">
+          <h2 className="text-base font-extrabold text-gray-900 mb-4">Skills</h2>
  
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+          {/* Skill tags */}
+          <div className="flex flex-wrap gap-2 mb-3">
             {skills.map((s) => (
               <span
                 key={s}
-                style={{
-                  background: "#f0fdf4",
-                  color: "#166534",
-                  border: "1px solid #bbf7d0",
-                  borderRadius: 20,
-                  padding: "5px 12px",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 6,
-                  fontFamily: "system-ui, sans-serif",
-                }}
+                className="flex items-center gap-1.5 bg-green-50 text-green-800 border border-green-200 text-xs font-semibold px-3 py-1.5 rounded-full"
+                style={{ fontFamily: "system-ui, sans-serif" }}
               >
                 {s}
                 <button
                   onClick={() => removeSkill(s)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "#16a34a",
-                    fontSize: 14,
-                    lineHeight: 1,
-                    padding: 0,
-                  }}
+                  className="text-green-600 bg-transparent border-none cursor-pointer text-sm leading-none p-0 hover:text-green-900"
                 >
                   ×
                 </button>
@@ -171,52 +95,33 @@ export const ProfilePage = () => {
             ))}
           </div>
  
-          <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+          {/* Add skill input */}
+          <div className="flex gap-2 mb-3">
             <input
               value={skillInput}
               onChange={(e) => setSkillInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addSkill(skillInput)}
               placeholder="Add a skill..."
-              style={{ flex: 1, border: "1.5px solid #e5e7eb", borderRadius: 8, padding: "9px 14px", fontSize: 14, fontFamily: "system-ui, sans-serif", outline: "none" }}
+              className="flex-1 border border-gray-200 rounded-lg px-3.5 py-2 text-sm outline-none focus:border-green-700 transition-colors"
+              style={{ fontFamily: "system-ui, sans-serif" }}
             />
             <button
               onClick={() => addSkill(skillInput)}
-              style={{
-                background: "#1a5c38",
-                color: "white",
-                border: "none",
-                borderRadius: 8,
-                width: 36,
-                height: 36,
-                fontSize: 20,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
+              className="w-9 h-9 bg-green-900 text-white rounded-lg text-xl flex items-center justify-center hover:bg-green-800 transition-colors cursor-pointer border-none"
             >
               +
             </button>
           </div>
  
-          <div>
-            <span style={{ fontSize: 12, color: "#9ca3af", fontFamily: "system-ui, sans-serif" }}>
-              Suggested skills:{" "}
-            </span>
+          {/* Suggested */}
+          <div className="flex flex-wrap gap-1 items-center">
+            <span className="text-xs text-gray-400" style={{ fontFamily: "system-ui, sans-serif" }}>Suggested:</span>
             {SUGGESTED_SKILLS.filter((s) => !skills.includes(s)).map((s) => (
               <button
                 key={s}
                 onClick={() => addSkill(s)}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "#1a5c38",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  padding: "2px 4px",
-                  fontFamily: "system-ui, sans-serif",
-                }}
+                className="text-xs font-semibold text-green-700 bg-transparent border-none cursor-pointer px-1 hover:text-green-900"
+                style={{ fontFamily: "system-ui, sans-serif" }}
               >
                 + {s}
               </button>
@@ -225,59 +130,27 @@ export const ProfilePage = () => {
         </div>
  
         {/* ── Portfolio & CV ── */}
-        <div
-          style={{
-            background: "white",
-            borderRadius: 16,
-            padding: "24px",
-            marginBottom: 24,
-            border: "1px solid #e5e7eb",
-          }}
-        >
-          <h2 style={{ fontSize: 17, fontWeight: 800, margin: "0 0 16px" }}>Portfolio & CV</h2>
+        <div className="bg-white rounded-2xl p-6 mb-6 border border-gray-200">
+          <h2 className="text-base font-extrabold text-gray-900 mb-4">Portfolio & CV</h2>
  
-          <div style={{ display: "grid", gap: 14 }}>
+          <div className="grid gap-4">
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                ⊓ GitHub Profile
-              </label>
-              <input placeholder="https://github.com/yourusername" style={inputStyle} />
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>⊓ GitHub Profile</label>
+              <input placeholder="https://github.com/yourusername" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                ⊕ Portfolio Website
-              </label>
-              <input placeholder="https://yourportfolio.com" style={inputStyle} />
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>⊕ Portfolio Website</label>
+              <input placeholder="https://yourportfolio.com" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: "#374151", display: "block", marginBottom: 6, fontFamily: "system-ui, sans-serif" }}>
-                Upload CV
-              </label>
-              <div
-                style={{
-                  border: "2px dashed #d1d5db",
-                  borderRadius: 10,
-                  padding: "32px 20px",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  background: "#fafafa",
-                }}
-              >
-                <div style={{ fontSize: 24, marginBottom: 8 }}>⤴</div>
-                <p style={{ fontSize: 13, color: "#6b7280", margin: 0, fontFamily: "system-ui, sans-serif" }}>
+              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Upload CV</label>
+              <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className="text-2xl mb-2">⤴</div>
+                <p className="text-sm text-gray-500 m-0" style={{ fontFamily: "system-ui, sans-serif" }}>
                   Drag & drop your CV here, or{" "}
-                  <span
-                    style={{
-                      color: "#1a5c38",
-                      fontWeight: 600,
-                      textDecoration: "underline",
-                      cursor: "pointer",
-                    }}
-                  >
-                    browse
-                  </span>
+                  <span className="text-green-700 font-semibold underline cursor-pointer">browse</span>
                 </p>
-                <p style={{ fontSize: 12, color: "#9ca3af", margin: "4px 0 0", fontFamily: "system-ui, sans-serif" }}>
+                <p className="text-xs text-gray-400 mt-1" style={{ fontFamily: "system-ui, sans-serif" }}>
                   PDF, DOC up to 5MB
                 </p>
               </div>
@@ -285,22 +158,13 @@ export const ProfilePage = () => {
           </div>
         </div>
  
-        {/* ── Save Button ── */}
+        {/* Save button */}
         <button
           onClick={handleSave}
-          style={{
-            width: "100%",
-            background: saved ? "#22c55e" : "#1a5c38",
-            color: "white",
-            border: "none",
-            borderRadius: 12,
-            padding: "15px",
-            fontSize: 16,
-            fontWeight: 700,
-            cursor: "pointer",
-            transition: "background 0.3s",
-            fontFamily: "'Georgia', serif",
-          }}
+          className={`w-full text-white font-bold py-4 rounded-xl text-base transition-colors cursor-pointer border-none ${
+            saved ? "bg-green-500" : "bg-green-900 hover:bg-green-800"
+          }`}
+          style={{ fontFamily: "'Georgia', serif" }}
         >
           {saved ? "✓ Profile Saved!" : "Save Profile"}
         </button>

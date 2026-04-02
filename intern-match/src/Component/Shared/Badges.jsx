@@ -1,45 +1,29 @@
 export const MatchBadge = ({ match }) => {
   const color =
-    match >= 85 ? "#22c55e" : match >= 70 ? "#f59e0b" : "#94a3b8";
-  const bg =
-    match >= 85 ? "#dcfce7" : match >= 70 ? "#fef3c7" : "#f1f5f9";
+    match >= 85
+      ? "bg-green-100 text-green-600"
+      : match >= 70
+      ? "bg-yellow-100 text-yellow-600"
+      : "bg-gray-100 text-gray-400";
+ 
   return (
-    <span
-      style={{
-        background: bg,
-        color,
-        fontSize: 12,
-        fontWeight: 700,
-        padding: "3px 8px",
-        borderRadius: 20,
-        whiteSpace: "nowrap",
-      }}
-    >
+    <span className={`${color} text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap`}>
       {match}% Match
     </span>
   );
 };
  
 export const TypeBadge = ({ type }) => {
-  const styles = {
-    Remote:   { bg: "#dcfce7", color: "#15803d" },
-    Hybrid:   { bg: "#fef3c7", color: "#92400e" },
-    "On-site":{ bg: "#fee2e2", color: "#991b1b" },
-  };
-  const s = styles[type] || styles.Hybrid;
+  const color =
+    type === "Remote"
+      ? "bg-green-100 text-green-700"
+      : type === "Hybrid"
+      ? "bg-yellow-100 text-yellow-800"
+      : "bg-red-100 text-red-800";
+ 
   return (
-    <span
-      style={{
-        background: s.bg,
-        color: s.color,
-        fontSize: 12,
-        fontWeight: 600,
-        padding: "3px 10px",
-        borderRadius: 20,
-      }}
-    >
+    <span className={`${color} text-xs font-semibold px-3 py-1 rounded-full`}>
       {type}
     </span>
   );
 };
- 
