@@ -4,7 +4,7 @@ const features = [
   {
     icon: "✦",
     title: "AI Smart Matching",
-    desc: "Our algorithm matches you with internships based on skills, interests, and career goals with a personalized match score.",
+    desc: "Ooour algorithm matches you with internships based on skills, interests, and career goals with a personalized match score.",
   },
   {
     icon: "◎",
