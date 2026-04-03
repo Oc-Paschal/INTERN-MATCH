@@ -1,5 +1,5 @@
 import { useState } from "react";
-import mapPinsData from "../data/mapPins.json";
+import mapPinsData from "../data/Mappins.json";
  
 export const MapView = () => {
   const [activePin, setActivePin] = useState(3);

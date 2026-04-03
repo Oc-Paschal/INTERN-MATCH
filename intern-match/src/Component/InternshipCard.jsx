@@ -1,5 +1,5 @@
-import { CompanyIcon } from "./shared/CompanyIcon";
-import { MatchBadge, TypeBadge } from "./shared/Badges";
+import { CompanyIcon } from "./Shared/CompanyIcon";
+import { MatchBadge, TypeBadge } from "./Shared/Badges";
  
 export const InternshipCard = ({ intern }) => (
   <div className="bg-white rounded-2xl p-5 border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow duration-200 flex flex-col gap-3">
