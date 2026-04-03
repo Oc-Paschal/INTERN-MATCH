@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Nav } from "./Component/Nav";
 import { HomePage } from "./Pages/HomePage";
-import { InternshipsPage } from "./Pages/InternshipsPage";
-import { ProfilePage } from "./Pages/ProfilePage";
+import { InternshipsPage } from "./Pages/Internshipspage";
+import { ProfilePage } from "./Pages/Profilepage";
  
 export default function App() {
   const [page, setPage] = useState("home");
