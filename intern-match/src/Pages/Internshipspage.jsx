@@ -1,7 +1,7 @@
 import { useState } from "react";
 import internshipsData from "../data/internships.json";
 import { InternshipCard } from "../Component/InternshipCard";
-import { MapView } from "../Component/MapView";
+import { MapView } from "../Component/Mapview";
 import { Footer } from "../Component/Shared/Footer";
  
 const LOCATIONS  = ["All Locations", "Lagos", "Abuja", "Remote", "Port Harcourt"];
