@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Footer } from "./Component/shared/Footer";
+import { Footer } from "../Component/Shared/Footer";
  
 const SUGGESTED_SKILLS = ["JavaScript", "Figma", "Node.js", "SQL", "Django", "Flutter"];
  
