@@ -1,4 +1,53 @@
+import { useState, useEffect, useRef} from "react";
 import { Footer } from "../Component/Shared/Footer";
+
+const useCountUp = (target, duration = 1800) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          const startTime = performance.now();
+          const tick = (now) => {
+            const elapsed  = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased    = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.floor(eased * target));
+            if (progress < 1) requestAnimationFrame(tick);
+            else setCount(target);
+          };
+          requestAnimationFrame(tick);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return { count, ref };
+};
+
+const StatCounter = ({ target, suffix, label }) => {
+  const { count, ref } = useCountUp(target);
+  return (
+    <div ref={ref}>
+      <p className="text-2xl font-extrabold text-gray-900">
+        {count.toLocaleString()}{suffix}
+      </p>
+      <p className="text-xs text-gray-500 mt-0.5" style={{ fontFamily: "system-ui, sans-serif" }}>
+        {label}
+      </p>
+    </div>
+  );
+};
  
 const features = [
   {
@@ -66,13 +115,10 @@ export const HomePage = ({ setPage }) => (
  
         {/* Stats */}
         <div className="flex gap-10">
-          {[["5,000+", "Students"], ["200+", "Companies"], ["92%", "Match Rate"]].map(([n, l]) => (
-            <div key={l}>
-              <p className="text-xl font-extrabold text-gray-900">{n}</p>
-              <p className="text-xs text-gray-500 mt-0.5" style={{ fontFamily: "system-ui, sans-serif" }}>{l}</p>
-            </div>
-          ))}
-        </div>
+  <StatCounter target={5000} suffix="+" label="Students"   />
+  <StatCounter target={200}  suffix="+" label="Companies"  />
+  <StatCounter target={92}   suffix="%" label="Match Rate" />
+</div>
       </div>
     </section>
  
