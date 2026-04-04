@@ -38,25 +38,25 @@ export const ProfilePage = () => {
           <div className="grid gap-4">
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Full Name</label>
-              <input defaultValue="Adebayo Ogunlesi" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
+              <input placeholder="Adebayo Ogunlesi" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
  
             <div>
               <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Email</label>
-              <input defaultValue="adebayo@email.com" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
+              <input placeholder="adebayo@email.com" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
             </div>
  
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>📍 Preferred Location</label>
                 <div className="relative">
-                  <input defaultValue="Lagos, Nigeria" className={`${inputClass} pr-8`} style={{ fontFamily: "system-ui, sans-serif" }} />
+                  <input placeholder="Lagos, Nigeria" className={`${inputClass} pr-8`} style={{ fontFamily: "system-ui, sans-serif" }} />
                   <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm">◈</span>
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>⊞ Course of Study</label>
-                <input defaultValue="Computer Science" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
+                <input placeholder="Computer Science" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
               </div>
             </div>
  
