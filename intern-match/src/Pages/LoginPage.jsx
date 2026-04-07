@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
  
 const Logo = () => (
   <div className="flex items-center gap-2 justify-center mb-8">
@@ -16,17 +19,23 @@ const Logo = () => (
   </div>
 );
  
-export const LoginPage = ({ setPage }) => {
+export const LoginPage = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
+  const { addToast } = useToast();
   const [form, setForm]         = useState({ email: "", password: "" });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState("");
- 
+
+  const from = location.state?.from?.pathname || "/";
+
   const handleChange = (e) => {
     setError("");
     setForm({ ...form, [e.target.name]: e.target.value });
   };
- 
+
   const handleSubmit = () => {
     if (!form.email || !form.password) {
       setError("Please fill in all fields.");
@@ -41,10 +50,11 @@ export const LoginPage = ({ setPage }) => {
       return;
     }
     setLoading(true);
-    // Simulate auth — replace with your real API call
     setTimeout(() => {
+      login({ email: form.email, name: form.email.split("@")[0] });
       setLoading(false);
-      setPage("home");
+      addToast("Welcome back!", "success");
+      navigate(from, { replace: true });
     }, 1500);
   };
  
@@ -99,7 +109,7 @@ export const LoginPage = ({ setPage }) => {
                   Password
                 </label>
                 <button
-                  onClick={() => setPage("forgot")}
+                  onClick={() => navigate("/forgot")}
                   className="text-xs text-green-700 font-medium hover:text-green-900 bg-transparent border-none cursor-pointer"
                   style={{ fontFamily: "system-ui, sans-serif" }}
                 >
@@ -177,26 +187,26 @@ export const LoginPage = ({ setPage }) => {
           {/* Switch to register */}
           <p className="text-center text-sm text-gray-500 mt-6" style={{ fontFamily: "system-ui, sans-serif" }}>
             Don't have an account?{" "}
-            <button
-              onClick={() => setPage("register")}
-              className="text-green-700 font-semibold hover:text-green-900 bg-transparent border-none cursor-pointer"
+            <Link
+              to="/register"
+              className="text-green-700 font-semibold hover:text-green-900 no-underline"
             >
               Create one free
-            </button>
+            </Link>
           </p>
         </div>
- 
+
         {/* Back to home */}
-        <button
-          onClick={() => setPage("home")}
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 bg-transparent border-none cursor-pointer"
+        <Link
+          to="/"
+          className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 no-underline"
           style={{ fontFamily: "system-ui, sans-serif" }}
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M19 12H5M12 5l-7 7 7 7" />
           </svg>
           Back to home
-        </button>
+        </Link>
       </div>
     </div>
   );

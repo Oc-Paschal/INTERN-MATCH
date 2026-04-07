@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
  
 const Logo = () => (
   <div className="flex items-center gap-2 justify-center mb-8">
@@ -16,19 +17,19 @@ const Logo = () => (
   </div>
 );
  
-export const ForgotPasswordPage = ({ setPage }) => {
+export const ForgotPasswordPage = () => {
+  const navigate = useNavigate();
   const [email, setEmail]     = useState("");
   const [sent, setSent]       = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
- 
+
   const handleSubmit = () => {
     if (!email.includes("@")) {
       setError("Please enter a valid email address.");
       return;
     }
     setLoading(true);
-    // Simulate sending reset email — replace with your real API call
     setTimeout(() => {
       setLoading(false);
       setSent(true);
@@ -115,7 +116,7 @@ export const ForgotPasswordPage = ({ setPage }) => {
                 Check your inbox and follow the instructions.
               </p>
               <button
-                onClick={() => setPage("login")}
+                onClick={() => navigate("/login")}
                 className="w-full py-3.5 rounded-xl bg-green-900 text-white font-bold text-sm hover:bg-green-800 transition-colors border-none cursor-pointer"
                 style={{ fontFamily: "'Georgia', serif" }}
               >
@@ -132,18 +133,18 @@ export const ForgotPasswordPage = ({ setPage }) => {
               </p>
             </div>
           )}
- 
+
           {!sent && (
-            <button
-              onClick={() => setPage("login")}
-              className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 w-full mt-5 bg-transparent border-none cursor-pointer"
+            <Link
+              to="/login"
+              className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 w-full mt-5 no-underline"
               style={{ fontFamily: "system-ui, sans-serif" }}
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M19 12H5M12 5l-7 7 7 7" />
               </svg>
               Back to Sign In
-            </button>
+            </Link>
           )}
         </div>
       </div>
