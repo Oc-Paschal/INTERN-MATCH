@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import { Footer } from "../Component/Shared/Footer";
 
 const useCountUp = (target, duration = 1800) => {
@@ -15,9 +15,9 @@ const useCountUp = (target, duration = 1800) => {
           started.current = true;
           const startTime = performance.now();
           const tick = (now) => {
-            const elapsed  = now - startTime;
+            const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const eased    = 1 - Math.pow(1 - progress, 3);
+            const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.floor(eased * target));
             if (progress < 1) requestAnimationFrame(tick);
             else setCount(target);
@@ -26,7 +26,7 @@ const useCountUp = (target, duration = 1800) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -40,15 +40,19 @@ const StatCounter = ({ target, suffix, label }) => {
   return (
     <div ref={ref}>
       <p className="text-2xl font-extrabold text-gray-900">
-        {count.toLocaleString()}{suffix}
+        {count.toLocaleString()}
+        {suffix}
       </p>
-      <p className="text-xs text-gray-500 mt-0.5" style={{ fontFamily: "system-ui, sans-serif" }}>
+      <p
+        className="text-xs text-gray-500 mt-0.5"
+        style={{ fontFamily: "system-ui, sans-serif" }}
+      >
         {label}
       </p>
     </div>
   );
 };
- 
+
 const features = [
   {
     icon: "✦",
@@ -71,32 +75,44 @@ const features = [
     desc: "All companies are verified. Read reviews from past interns and make informed decisions about your future.",
   },
 ];
- 
+
 export const HomePage = ({ setPage }) => (
   <div style={{ fontFamily: "'Georgia', serif" }}>
- 
     {/* ── Hero ── */}
     <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-white px-6 md:px-16 py-20">
       <div className="max-w-3xl mx-auto">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white border border-green-200 rounded-full px-4 py-1.5 mb-7">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#15803d" strokeWidth="2.5">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#15803d"
+            strokeWidth="2.5"
+          >
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
-          <span className="text-xs font-semibold text-green-700">AI-Powered Internship Matching</span>
+          <span className="text-xs font-semibold text-green-700">
+            AI-Powered Internship Matching
+          </span>
         </div>
- 
+
         {/* Heading */}
+        <div></div>
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight mb-5">
           Find Your Perfect <br />
           <span className="text-green-800">Internship</span> Match in Nigeria
         </h1>
- 
-        <p className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-9 font-normal" style={{ fontFamily: "system-ui, sans-serif" }}>
-          Smart matching connects Nigerian students with top internship opportunities
-          based on your skills, interests, and career goals.
+
+        <p
+          className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-9 font-normal"
+          style={{ fontFamily: "system-ui, sans-serif" }}
+        >
+          Smart matching connects Nigerian students with top internship
+          opportunities based on your skills, interests, and career goals.
         </p>
- 
+
         {/* CTAs */}
         <div className="flex flex-wrap gap-4 mb-12">
           <button
@@ -112,44 +128,59 @@ export const HomePage = ({ setPage }) => (
             Create Your Profile
           </button>
         </div>
- 
+
         {/* Stats */}
         <div className="flex gap-10">
-  <StatCounter target={5000} suffix="+" label="Students"   />
-  <StatCounter target={200}  suffix="+" label="Companies"  />
-  <StatCounter target={92}   suffix="%" label="Match Rate" />
-</div>
+          <StatCounter target={5000} suffix="+" label="Students" />
+          <StatCounter target={200} suffix="+" label="Companies" />
+          <StatCounter target={92} suffix="%" label="Match Rate" />
+        </div>
       </div>
     </section>
- 
+
     {/* ── Why Section ── */}
     <section className="bg-white px-6 md:px-16 py-20 text-center">
-      <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-3">Why InternMatch NG?</h2>
-      <p className="text-gray-500 mb-14" style={{ fontFamily: "system-ui, sans-serif" }}>
-        Built for Nigerian students, powered by AI, designed for real-world impact.
+      <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-3">
+        Why InternMatch NG?
+      </h2>
+      <p
+        className="text-gray-500 mb-14"
+        style={{ fontFamily: "system-ui, sans-serif" }}
+      >
+        Built for Nigerian students, powered by AI, designed for real-world
+        impact.
       </p>
- 
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
         {features.map((f) => (
-          <div key={f.title} className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-left">
+          <div
+            key={f.title}
+            className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-left"
+          >
             <div className="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center text-green-800 text-xl mb-4">
               {f.icon}
             </div>
             <p className="font-bold text-gray-900 mb-2">{f.title}</p>
-            <p className="text-sm text-gray-500 leading-relaxed" style={{ fontFamily: "system-ui, sans-serif" }}>
+            <p
+              className="text-sm text-gray-500 leading-relaxed"
+              style={{ fontFamily: "system-ui, sans-serif" }}
+            >
               {f.desc}
             </p>
           </div>
         ))}
       </div>
     </section>
- 
+
     {/* ── CTA Banner ── */}
     <section className="bg-gradient-to-br from-green-900 to-green-950 px-6 py-20 text-center">
       <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">
         Ready to Land Your Dream Internship?
       </h2>
-      <p className="text-green-300 mb-9" style={{ fontFamily: "system-ui, sans-serif" }}>
+      <p
+        className="text-green-300 mb-9"
+        style={{ fontFamily: "system-ui, sans-serif" }}
+      >
         Join thousands of Nigerian students already finding their perfect match.
       </p>
       <button
@@ -159,7 +190,7 @@ export const HomePage = ({ setPage }) => (
         Get Started Free →
       </button>
     </section>
- 
+
     <Footer />
   </div>
 );
