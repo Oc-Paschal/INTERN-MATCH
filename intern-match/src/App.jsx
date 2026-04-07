@@ -1,30 +1,45 @@
-import { useState } from "react";
-import { Nav }                from "./Component/Nav";
-import { HomePage }           from "./Pages/HomePage";
-import { InternshipsPage }    from "./Pages/InternshipsPage";
-import { ProfilePage }        from "./Pages/ProfilePage";
-import { LoginPage }          from "./Pages/LoginPage";
-import { RegisterPage }       from "./Pages/RegisterPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { ToastProvider } from "./context/ToastContext";
+import { FavoritesProvider } from "./context/FavoritesContext";
+import { ProtectedRoute } from "./Component/ProtectedRoute";
+import { Layout } from "./Component/Layout";
+import { HomePage } from "./Pages/HomePage";
+import { InternshipsPage } from "./Pages/Internshipspage";
+import { ProfilePage } from "./Pages/Profilepage";
+import { LoginPage } from "./Pages/LoginPage";
+import { RegisterPage } from "./Pages/RegisterPage";
 import { ForgotPasswordPage } from "./Pages/ForgotPasswordPage";
- 
-// Pages that should NOT show the Nav bar
-const AUTH_PAGES = ["login", "register", "forgot"];
- 
+
 export default function App() {
-  const [page, setPage] = useState("home");
- 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {!AUTH_PAGES.includes(page) && (
-        <Nav page={page} setPage={setPage} />
-      )}
-      {page === "home"        && <HomePage        setPage={setPage} />}
-      {page === "internships" && <InternshipsPage setPage={setPage} />}
-      {page === "profile"     && <ProfilePage     setPage={setPage} />}
-      {page === "login"       && <LoginPage       setPage={setPage} />}
-      {page === "register"    && <RegisterPage    setPage={setPage} />}
-      {page === "forgot"      && <ForgotPasswordPage setPage={setPage} />}
-    </div>
+    <AuthProvider>
+      <ToastProvider>
+        <FavoritesProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Public pages with Nav */}
+              <Route element={<Layout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/internships" element={<InternshipsPage />} />
+                <Route 
+                  path="/profile" 
+                  element={
+                    <ProtectedRoute>
+                      <ProfilePage />
+                    </ProtectedRoute>
+                  } 
+                />
+              </Route>
+
+              {/* Auth pages without Nav */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/forgot" element={<ForgotPasswordPage />} />
+            </Routes>
+          </BrowserRouter>
+        </FavoritesProvider>
+      </ToastProvider>
+    </AuthProvider>
   );
 }
- 

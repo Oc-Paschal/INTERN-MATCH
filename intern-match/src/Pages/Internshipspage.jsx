@@ -1,8 +1,10 @@
 import { useState } from "react";
 import internshipsData from "../data/internships.json";
 import { InternshipCard } from "../Component/InternshipCard";
+import { InternshipModal } from "../Component/InternshipModal";
 import { MapView } from "../Component/Mapview";
 import { Footer } from "../Component/Shared/Footer";
+import { EmptyState } from "../Component/EmptyState";
  
 const LOCATIONS  = ["All Locations", "Lagos", "Abuja", "Remote", "Port Harcourt"];
 const CATEGORIES = ["All", "Engineering", "Design", "Data", "Marketing", "Operations"];
@@ -17,6 +19,7 @@ export const InternshipsPage = () => {
   const [category, setCategory]         = useState("All");
   const [viewMode, setViewMode]         = useState("list");
   const [courseFilter, setCourseFilter] = useState("All Courses");
+  const [selectedIntern, setSelectedIntern] = useState(null);
  
   const filtered = internshipsData.filter((i) => {
     const matchSearch =
@@ -151,15 +154,21 @@ export const InternshipsPage = () => {
             <p className="text-sm text-gray-500 mb-4" style={{ fontFamily: "system-ui, sans-serif" }}>
               {filtered.length} internships found
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filtered.map((i) => (
-                <InternshipCard key={i.id} intern={i} />
-              ))}
-            </div>
+            {filtered.length === 0 ? (
+              <EmptyState />
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filtered.map((i) => (
+                  <InternshipCard key={i.id} intern={i} onClick={() => setSelectedIntern(i)} />
+                ))}
+              </div>
+            )}
           </>
         )}
       </div>
- 
+
+      <InternshipModal intern={selectedIntern} onClose={() => setSelectedIntern(null)} />
+
       <Footer />
     </div>
   );

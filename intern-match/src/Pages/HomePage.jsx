@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Footer } from "../Component/Shared/Footer";
 
 const useCountUp = (target, duration = 1800) => {
@@ -76,10 +77,10 @@ const features = [
   },
 ];
 
-export const HomePage = ({ setPage }) => (
+export const HomePage = () => (
   <div style={{ fontFamily: "'Georgia', serif" }}>
     {/* ── Hero ── */}
-    <section className="bg-gradient-to-br from-green-50 via-emerald-50 to-white px-6 md:px-16 py-20">
+    <section className="bg-linear-to-br from-green-50 via-emerald-50 to-white px-6 md:px-16 py-20">
       <div className="max-w-3xl mx-auto">
         {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white border border-green-200 rounded-full px-4 py-1.5 mb-7">
@@ -115,18 +116,18 @@ export const HomePage = ({ setPage }) => (
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-4 mb-12">
-          <button
-            onClick={() => setPage("internships")}
-            className="bg-green-900 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-800 transition-colors flex items-center gap-2"
+          <Link
+            to="/internships"
+            className="bg-green-900 text-white font-bold px-6 py-3 rounded-xl hover:bg-green-800 transition-colors flex items-center gap-2 no-underline"
           >
             Browse Internships <span>→</span>
-          </button>
-          <button
-            onClick={() => setPage("profile")}
-            className="bg-white text-gray-800 font-semibold px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-colors"
+          </Link>
+          <Link
+            to="/profile"
+            className="bg-white text-gray-800 font-semibold px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-colors no-underline"
           >
             Create Your Profile
-          </button>
+          </Link>
         </div>
 
         {/* Stats */}
@@ -173,7 +174,7 @@ export const HomePage = ({ setPage }) => (
     </section>
 
     {/* ── CTA Banner ── */}
-    <section className="bg-gradient-to-br from-green-900 to-green-950 px-6 py-20 text-center">
+    <section className="bg-linear-to-br from-green-900 to-green-950 px-6 py-20 text-center">
       <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">
         Ready to Land Your Dream Internship?
       </h2>
@@ -183,12 +184,12 @@ export const HomePage = ({ setPage }) => (
       >
         Join thousands of Nigerian students already finding their perfect match.
       </p>
-      <button
-        onClick={() => setPage("profile")}
-        className="bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-xl hover:bg-yellow-300 transition-colors"
+      <Link
+        to="/internships"
+        className="bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-xl hover:bg-yellow-300 transition-colors no-underline"
       >
         Get Started Free →
-      </button>
+      </Link>
     </section>
 
     <Footer />

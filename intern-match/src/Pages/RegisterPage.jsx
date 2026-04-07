@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
  
 const Logo = () => (
   <div className="flex items-center gap-2 justify-center mb-8">
@@ -22,8 +25,11 @@ const COURSES = [
   "Marketing", "Fine Arts", "Business Administration", "Economics",
 ];
  
-export const RegisterPage = ({ setPage }) => {
-  const [step, setStep]         = useState(1); // 2-step form
+export const RegisterPage = () => {
+  const navigate = useNavigate();
+  const { register } = useAuth();
+  const { addToast } = useToast();
+  const [step, setStep]         = useState(1);
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState("");
@@ -71,10 +77,16 @@ export const RegisterPage = ({ setPage }) => {
     const err = validateStep2();
     if (err) { setError(err); return; }
     setLoading(true);
-    // Simulate registration — replace with your real API call
     setTimeout(() => {
+      register({
+        fullName: form.fullName,
+        email: form.email,
+        course: form.course,
+        location: form.location,
+      });
       setLoading(false);
-      setPage("profile"); // redirect to profile after signup
+      addToast("Account created successfully!", "success");
+      navigate("/profile");
     }, 1500);
   };
  
@@ -344,26 +356,26 @@ export const RegisterPage = ({ setPage }) => {
           {/* Switch to login */}
           <p className="text-center text-sm text-gray-500 mt-6" style={{ fontFamily: "system-ui, sans-serif" }}>
             Already have an account?{" "}
-            <button
-              onClick={() => setPage("login")}
-              className="text-green-700 font-semibold hover:text-green-900 bg-transparent border-none cursor-pointer"
+            <Link
+              to="/login"
+              className="text-green-700 font-semibold hover:text-green-900 no-underline"
             >
               Sign in
-            </button>
+            </Link>
           </p>
         </div>
- 
+
         {/* Back to home */}
-        <button
-          onClick={() => setPage("home")}
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 bg-transparent border-none cursor-pointer"
+        <Link
+          to="/"
+          className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 no-underline"
           style={{ fontFamily: "system-ui, sans-serif" }}
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M19 12H5M12 5l-7 7 7 7" />
           </svg>
           Back to home
-        </button>
+        </Link>
       </div>
     </div>
   );
