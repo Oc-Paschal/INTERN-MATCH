@@ -3,120 +3,272 @@
     "id": 1,
     "title": "Frontend Developer Intern",
     "company": "Paystack",
+    "companyDesc": "Paystack is a technology company solving payments problems for ambitious businesses in Africa. They enable businesses accept payments and make payouts seamlessly.",
+    "companySize": "500–1,000 employees",
+    "companyWebsite": "https://paystack.com",
     "location": "Lagos",
     "type": "Remote",
     "posted": "2d ago",
-    "skills": [
-      "React",
-      "TypeScript",
-      "CSS"
-    ],
+    "deadline": "2026-04-30",
+    "duration": "3 months",
+    "stipend": "₦80,000/month",
+    "slots": 3,
+    "skills": ["React", "TypeScript", "CSS"],
     "match": 92,
-    "category": "Engineering"
+    "category": "Engineering",
+    "description": "Join Paystack's engineering team as a Frontend Developer Intern. You will work directly with senior engineers to build and improve the interfaces that millions of businesses and customers use every day. This is a hands-on role where you'll ship real code to production.",
+    "responsibilities": [
+      "Build and maintain user-facing features using React and TypeScript",
+      "Collaborate with designers to implement pixel-perfect UI components",
+      "Write clean, maintainable, and well-tested code",
+      "Participate in code reviews and engineering discussions",
+      "Debug and resolve frontend issues across browsers"
+    ],
+    "requirements": [
+      "Currently enrolled in Computer Science or a related degree",
+      "Solid understanding of HTML, CSS, and JavaScript",
+      "Familiarity with React or a similar frontend framework",
+      "Passion for building great user experiences",
+      "Good communication and team collaboration skills"
+    ],
+    "perks": ["Mentorship from senior engineers", "Remote-first culture", "Certificate of completion", "Potential full-time offer"]
   },
   {
     "id": 2,
     "title": "Data Science Intern",
     "company": "Flutterwave",
+    "companyDesc": "Flutterwave is a leading African fintech company providing payment infrastructure for global merchants and payment service providers across Africa.",
+    "companySize": "1,000–5,000 employees",
+    "companyWebsite": "https://flutterwave.com",
     "location": "Lagos",
     "type": "Hybrid",
     "posted": "3d ago",
-    "skills": [
-      "Python",
-      "Pandas",
-      "SQL"
-    ],
+    "deadline": "2026-05-10",
+    "duration": "6 months",
+    "stipend": "₦100,000/month",
+    "slots": 2,
+    "skills": ["Python", "Pandas", "SQL"],
     "match": 85,
-    "category": "Data"
+    "category": "Data",
+    "description": "Work with Flutterwave's data team to extract insights from large transaction datasets. You'll help build dashboards, clean data pipelines, and support the business with analytical reports that drive key decisions.",
+    "responsibilities": [
+      "Analyze large datasets using Python and SQL",
+      "Build and maintain data pipelines and dashboards",
+      "Generate reports and visualizations for business teams",
+      "Assist with A/B testing and experiment analysis",
+      "Identify trends and anomalies in transaction data"
+    ],
+    "requirements": [
+      "Enrolled in Statistics, Computer Science, or related field",
+      "Proficiency in Python (Pandas, NumPy)",
+      "Basic knowledge of SQL and relational databases",
+      "Experience with data visualization tools is a plus",
+      "Strong analytical and problem-solving skills"
+    ],
+    "perks": ["Hybrid work schedule", "Access to real fintech data", "Certificate of completion", "Networking opportunities"]
   },
   {
     "id": 3,
     "title": "Product Design Intern",
     "company": "Andela",
+    "companyDesc": "Andela connects companies with vetted remote engineers and designers across Africa and beyond. They are building a global network of technology talent.",
+    "companySize": "1,000–5,000 employees",
+    "companyWebsite": "https://andela.com",
     "location": "Remote",
     "type": "Remote",
     "posted": "1d ago",
-    "skills": [
-      "Figma",
-      "UI/UX",
-      "Prototyping"
-    ],
+    "deadline": "2026-04-20",
+    "duration": "3 months",
+    "stipend": "₦75,000/month",
+    "slots": 2,
+    "skills": ["Figma", "UI/UX", "Prototyping"],
     "match": 78,
-    "category": "Design"
+    "category": "Design",
+    "description": "As a Product Design Intern at Andela, you'll collaborate with the product team to design intuitive and beautiful digital experiences. You'll take designs from concept to high-fidelity prototypes while working in a fully remote, global team.",
+    "responsibilities": [
+      "Design wireframes, prototypes, and high-fidelity mockups in Figma",
+      "Conduct user research and usability testing sessions",
+      "Collaborate with engineers to ensure designs are implemented correctly",
+      "Contribute to Andela's design system and component library",
+      "Present design work and receive feedback from the team"
+    ],
+    "requirements": [
+      "Enrolled in Design, HCI, or a related program",
+      "Proficiency in Figma or similar design tools",
+      "Understanding of UI/UX principles",
+      "Strong portfolio showcasing previous design work",
+      "Ability to communicate design decisions clearly"
+    ],
+    "perks": ["100% remote", "Global team exposure", "Design system contribution", "Portfolio-worthy projects"]
   },
   {
     "id": 4,
     "title": "Backend Engineer Intern",
     "company": "Kuda Bank",
+    "companyDesc": "Kuda is the money app for Africans — a digital-only bank offering free transfers, savings, and budgeting tools to millions of Nigerians.",
+    "companySize": "200–500 employees",
+    "companyWebsite": "https://kuda.com",
     "location": "Lagos",
     "type": "On-site",
     "posted": "5d ago",
-    "skills": [
-      "Node.js",
-      "PostgreSQL",
-      "REST APIs"
-    ],
+    "deadline": "2026-05-01",
+    "duration": "4 months",
+    "stipend": "₦90,000/month",
+    "slots": 4,
+    "skills": ["Node.js", "PostgreSQL", "REST APIs"],
     "match": 88,
-    "category": "Engineering"
+    "category": "Engineering",
+    "description": "Join Kuda's backend engineering team to help build the APIs and services that power one of Nigeria's fastest-growing digital banks. You'll work on real banking infrastructure used by hundreds of thousands of customers daily.",
+    "responsibilities": [
+      "Build and maintain RESTful APIs using Node.js",
+      "Write database queries and optimize PostgreSQL performance",
+      "Work alongside senior engineers on core banking features",
+      "Write unit and integration tests for backend services",
+      "Participate in daily standups and sprint planning"
+    ],
+    "requirements": [
+      "Enrolled in Computer Science or Software Engineering",
+      "Solid understanding of Node.js and REST API design",
+      "Familiarity with relational databases (PostgreSQL preferred)",
+      "Basic understanding of authentication and security practices",
+      "Ability to work on-site in Lagos"
+    ],
+    "perks": ["On-site Lagos office", "Free lunch", "Mentorship program", "Certificate of completion"]
   },
   {
     "id": 5,
     "title": "Mobile Developer Intern",
     "company": "Cowrywise",
+    "companyDesc": "Cowrywise is Nigeria's leading savings and investment platform, helping over 500,000 Nigerians save smarter and invest better through technology.",
+    "companySize": "100–200 employees",
+    "companyWebsite": "https://cowrywise.com",
     "location": "Lagos",
     "type": "Remote",
     "posted": "4d ago",
-    "skills": [
-      "React Native",
-      "JavaScript",
-      "Firebase"
-    ],
+    "deadline": "2026-04-25",
+    "duration": "3 months",
+    "stipend": "₦70,000/month",
+    "slots": 2,
+    "skills": ["React Native", "JavaScript", "Firebase"],
     "match": 73,
-    "category": "Engineering"
+    "category": "Engineering",
+    "description": "Build the mobile features that help Nigerians save and invest their money. As a Mobile Developer Intern at Cowrywise, you'll contribute directly to the React Native app used by hundreds of thousands of users.",
+    "responsibilities": [
+      "Develop new features for the Cowrywise mobile app in React Native",
+      "Integrate Firebase for push notifications and analytics",
+      "Fix bugs and improve app performance and load times",
+      "Write tests and maintain code quality standards",
+      "Collaborate with designers to implement new UI screens"
+    ],
+    "requirements": [
+      "Enrolled in Computer Science or related field",
+      "Experience with React Native or mobile development",
+      "Familiarity with JavaScript and Firebase",
+      "Understanding of mobile UX patterns",
+      "Self-motivated and comfortable working remotely"
+    ],
+    "perks": ["Fully remote", "Flexible hours", "Impact millions of users", "Certificate and reference letter"]
   },
   {
     "id": 6,
     "title": "AI/ML Intern",
     "company": "Interswitch",
+    "companyDesc": "Interswitch is a pioneering African integrated payments and digital commerce company enabling the transition from cash-based to digital payments across the continent.",
+    "companySize": "1,000–5,000 employees",
+    "companyWebsite": "https://interswitchgroup.com",
     "location": "Lagos",
     "type": "Hybrid",
     "posted": "7d ago",
-    "skills": [
-      "Python",
-      "TensorFlow",
-      "NLP"
-    ],
+    "deadline": "2026-05-15",
+    "duration": "6 months",
+    "stipend": "₦95,000/month",
+    "slots": 2,
+    "skills": ["Python", "TensorFlow", "NLP"],
     "match": 65,
-    "category": "Data"
+    "category": "Data",
+    "description": "Work on cutting-edge AI and machine learning projects at Interswitch. You'll build models that detect fraud, improve transaction routing, and extract insights from payments data at massive scale across Africa.",
+    "responsibilities": [
+      "Build and train machine learning models using TensorFlow",
+      "Work on NLP models for transaction categorization",
+      "Help improve fraud detection systems with new algorithms",
+      "Analyze model performance and iterate on improvements",
+      "Document model architectures and results clearly"
+    ],
+    "requirements": [
+      "Enrolled in Computer Science, Statistics, or related field",
+      "Strong Python skills with experience in ML libraries",
+      "Familiarity with TensorFlow or PyTorch",
+      "Understanding of NLP concepts is a plus",
+      "Passion for applying AI to real-world financial problems"
+    ],
+    "perks": ["Hybrid schedule", "Work on large-scale AI problems", "Conference attendance", "Certificate of completion"]
   },
   {
     "id": 7,
     "title": "Marketing Intern",
     "company": "Jumia",
+    "companyDesc": "Jumia is Africa's leading e-commerce platform operating in multiple African countries, connecting consumers with millions of products across a wide range of categories.",
+    "companySize": "5,000+ employees",
+    "companyWebsite": "https://jumia.com",
     "location": "Abuja",
     "type": "On-site",
     "posted": "2d ago",
-    "skills": [
-      "SEO",
-      "Content",
-      "Analytics"
-    ],
+    "deadline": "2026-04-28",
+    "duration": "3 months",
+    "stipend": "₦60,000/month",
+    "slots": 5,
+    "skills": ["SEO", "Content", "Analytics"],
     "match": 70,
-    "category": "Marketing"
+    "category": "Marketing",
+    "description": "Join Jumia's marketing team in Abuja to help grow one of Africa's biggest brands. You'll work on content strategy, SEO, and campaign analytics to drive traffic and sales across Jumia's platform.",
+    "responsibilities": [
+      "Create and publish SEO-optimized content for the blog and product pages",
+      "Assist with email marketing campaigns and newsletters",
+      "Track and report on campaign performance using Google Analytics",
+      "Research competitor strategies and market trends",
+      "Support social media content creation and scheduling"
+    ],
+    "requirements": [
+      "Enrolled in Marketing, Mass Communication, or related field",
+      "Basic understanding of SEO and digital marketing",
+      "Excellent writing and communication skills",
+      "Familiarity with Google Analytics or similar tools",
+      "Creative and detail-oriented"
+    ],
+    "perks": ["On-site Abuja office", "Exposure to large-scale campaigns", "Certificate of completion", "Staff discount on Jumia"]
   },
   {
     "id": 8,
     "title": "Operations Intern",
     "company": "Zenith Bank",
+    "companyDesc": "Zenith Bank is one of Nigeria's largest and most profitable financial institutions, providing a wide range of financial products and services to individuals and businesses.",
+    "companySize": "5,000+ employees",
+    "companyWebsite": "https://zenithbank.com",
     "location": "Port Harcourt",
     "type": "On-site",
     "posted": "1d ago",
-    "skills": [
-      "Excel",
-      "Reporting",
-      "Data Entry"
-    ],
+    "deadline": "2026-04-22",
+    "duration": "3 months",
+    "stipend": "₦55,000/month",
+    "slots": 6,
+    "skills": ["Excel", "Reporting", "Data Entry"],
     "match": 60,
-    "category": "Operations"
+    "category": "Operations",
+    "description": "Support Zenith Bank's operations team in Port Harcourt with data management, reporting, and process documentation. You'll gain first-hand experience in how a major Nigerian bank manages its day-to-day operations.",
+    "responsibilities": [
+      "Assist with daily data entry and record keeping",
+      "Generate weekly and monthly operational reports in Excel",
+      "Support the team with document processing and filing",
+      "Track and follow up on pending operational tasks",
+      "Identify inefficiencies and suggest process improvements"
+    ],
+    "requirements": [
+      "Enrolled in Accounting, Business Administration, or related field",
+      "Proficiency in Microsoft Excel",
+      "Strong attention to detail and organizational skills",
+      "Ability to work on-site in Port Harcourt",
+      "Professional and reliable attitude"
+    ],
+    "perks": ["On-site Port Harcourt branch", "Banking industry exposure", "Certificate of completion", "Professional reference"]
   }
 ]

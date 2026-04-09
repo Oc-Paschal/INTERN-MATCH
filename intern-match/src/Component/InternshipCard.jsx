@@ -1,9 +1,12 @@
+// src/Component/InternshipCard.jsx
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CompanyIcon } from "./Shared/CompanyIcon";
 import { MatchBadge, TypeBadge } from "./Shared/Badges";
 import { useFavorites } from "../context/FavoritesContext";
 
-export const InternshipCard = ({ intern, onClick }) => {
+export const InternshipCard = ({ intern }) => {
+  const navigate = useNavigate();
   const { isFavorite, toggleFavorite } = useFavorites();
   const favorited = isFavorite(intern.id);
 
@@ -18,7 +21,7 @@ export const InternshipCard = ({ intern, onClick }) => {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.98 }}
-      onClick={onClick}
+      onClick={() => navigate(`/internships/${intern.id}`)}
       className="bg-white rounded-2xl p-5 border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow duration-200 flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">
@@ -26,14 +29,9 @@ export const InternshipCard = ({ intern, onClick }) => {
           <CompanyIcon />
           <MatchBadge match={intern.match} />
         </div>
-        <button
-          onClick={handleFavorite}
-          className="bg-transparent border-none cursor-pointer p-1"
-        >
+        <button onClick={handleFavorite} className="bg-transparent border-none cursor-pointer p-1">
           <motion.svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
+            width="20" height="20" viewBox="0 0 24 24"
             fill={favorited ? "#dc2626" : "none"}
             stroke={favorited ? "#dc2626" : "#9ca3af"}
             strokeWidth="2"
