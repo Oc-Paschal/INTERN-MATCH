@@ -1,8 +1,9 @@
+// src/Pages/RegisterPage.jsx
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
- 
+
 const Logo = () => (
   <div className="flex items-center gap-2 justify-center mb-8">
     <div className="w-9 h-9 bg-green-900 rounded-lg flex items-center justify-center">
@@ -18,61 +19,54 @@ const Logo = () => (
     </span>
   </div>
 );
- 
+
 const COURSES = [
   "", "Computer Science", "Software Engineering", "Statistics",
   "Electrical Engineering", "Civil Engineering", "Accounting",
   "Marketing", "Fine Arts", "Business Administration", "Economics",
 ];
- 
+
 export const RegisterPage = () => {
-  const navigate = useNavigate();
-  const { register } = useAuth();
-  const { addToast } = useToast();
+  const navigate        = useNavigate();
+  const { register }    = useAuth();
+  const { addToast }    = useToast();
   const [step, setStep]         = useState(1);
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading]   = useState(false);
   const [error, setError]       = useState("");
   const [form, setForm]         = useState({
-    fullName:  "",
-    email:     "",
-    password:  "",
-    confirm:   "",
-    course:    "",
-    location:  "",
-    agreed:    false,
+    fullName: "", email: "", password: "",
+    confirm: "", course: "", location: "", agreed: false,
   });
- 
+
   const handleChange = (e) => {
     setError("");
     const val = e.target.type === "checkbox" ? e.target.checked : e.target.value;
     setForm({ ...form, [e.target.name]: val });
   };
- 
-  // Step 1 validation
+
   const validateStep1 = () => {
-    if (!form.fullName.trim())        return "Please enter your full name.";
-    if (!form.email.includes("@"))    return "Please enter a valid email address.";
-    if (form.password.length < 6)     return "Password must be at least 6 characters.";
+    if (!form.fullName.trim())          return "Please enter your full name.";
+    if (!form.email.includes("@"))      return "Please enter a valid email address.";
+    if (form.password.length < 6)       return "Password must be at least 6 characters.";
     if (form.password !== form.confirm) return "Passwords do not match.";
     return null;
   };
- 
-  // Step 2 validation
+
   const validateStep2 = () => {
-    if (!form.course)           return "Please select your course of study.";
-    if (!form.location.trim())  return "Please enter your preferred location.";
-    if (!form.agreed)           return "You must agree to the terms to continue.";
+    if (!form.course)          return "Please select your course of study.";
+    if (!form.location.trim()) return "Please enter your preferred location.";
+    if (!form.agreed)          return "You must agree to the terms to continue.";
     return null;
   };
- 
+
   const handleNext = () => {
     const err = validateStep1();
     if (err) { setError(err); return; }
     setError("");
     setStep(2);
   };
- 
+
   const handleSubmit = () => {
     const err = validateStep2();
     if (err) { setError(err); return; }
@@ -80,20 +74,20 @@ export const RegisterPage = () => {
     setTimeout(() => {
       register({
         fullName: form.fullName,
-        email: form.email,
-        course: form.course,
+        email:    form.email,
+        course:   form.course,
         location: form.location,
+        onboarded: false, // will be set true after onboarding
       });
       setLoading(false);
-      addToast("Account created successfully!", "success");
-      navigate("/profile");
+      addToast("Account created! Let's personalise your experience.", "success");
+      navigate("/onboarding"); // ← goes to onboarding flow
     }, 1500);
   };
- 
+
   const inputClass =
     "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all bg-white";
- 
-  // Password strength
+
   const strength =
     form.password.length === 0 ? 0
     : form.password.length < 6  ? 1
@@ -101,22 +95,20 @@ export const RegisterPage = () => {
     : 3;
   const strengthLabel = ["", "Weak", "Good", "Strong"];
   const strengthColor = ["", "bg-red-400", "bg-yellow-400", "bg-green-500"];
- 
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-white flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
- 
-        {/* Card */}
         <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-10">
           <Logo />
- 
+
           <h1 className="text-2xl font-extrabold text-gray-900 text-center mb-1 tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
             Create your account
           </h1>
           <p className="text-sm text-gray-500 text-center mb-6" style={{ fontFamily: "system-ui, sans-serif" }}>
             Join 5,000+ Nigerian students finding internships
           </p>
- 
+
           {/* Step indicator */}
           <div className="flex items-center gap-2 mb-7">
             {[1, 2].map((s) => (
@@ -137,62 +129,34 @@ export const RegisterPage = () => {
               </div>
             ))}
           </div>
- 
+
           {/* Error */}
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-xl mb-5" style={{ fontFamily: "system-ui, sans-serif" }}>
               {error}
             </div>
           )}
- 
+
           {/* ── STEP 1 ── */}
           {step === 1 && (
             <div className="grid gap-4">
-              {/* Full name */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Full Name</label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={form.fullName}
-                  onChange={handleChange}
-                  placeholder="Adebayo Ogunlesi"
-                  className={inputClass}
-                  style={{ fontFamily: "system-ui, sans-serif" }}
-                />
+                <input type="text" name="fullName" value={form.fullName} onChange={handleChange} placeholder="Adebayo Ogunlesi" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
               </div>
- 
-              {/* Email */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="you@example.com"
-                  className={inputClass}
-                  style={{ fontFamily: "system-ui, sans-serif" }}
-                />
+                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@example.com" className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }} />
               </div>
- 
-              {/* Password */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Password</label>
                 <div className="relative">
                   <input
-                    type={showPass ? "text" : "password"}
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    placeholder="Min. 6 characters"
-                    className={`${inputClass} pr-11`}
-                    style={{ fontFamily: "system-ui, sans-serif" }}
+                    type={showPass ? "text" : "password"} name="password" value={form.password}
+                    onChange={handleChange} placeholder="Min. 6 characters"
+                    className={`${inputClass} pr-11`} style={{ fontFamily: "system-ui, sans-serif" }}
                   />
-                  <button
-                    onClick={() => setShowPass(!showPass)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer"
-                  >
+                  <button onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer">
                     {showPass ? (
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
@@ -207,7 +171,6 @@ export const RegisterPage = () => {
                     )}
                   </button>
                 </div>
-                {/* Password strength bar */}
                 {form.password.length > 0 && (
                   <div className="mt-2">
                     <div className="flex gap-1 mb-1">
@@ -221,17 +184,12 @@ export const RegisterPage = () => {
                   </div>
                 )}
               </div>
- 
-              {/* Confirm password */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Confirm Password</label>
                 <input
-                  type="password"
-                  name="confirm"
-                  value={form.confirm}
-                  onChange={handleChange}
+                  type="password" name="confirm" value={form.confirm} onChange={handleChange}
                   placeholder="Repeat your password"
-                  className={`${inputClass} ${form.confirm && form.confirm !== form.password ? "border-red-300 focus:border-red-400" : form.confirm && form.confirm === form.password ? "border-green-400" : ""}`}
+                  className={`${inputClass} ${form.confirm && form.confirm !== form.password ? "border-red-300" : form.confirm && form.confirm === form.password ? "border-green-400" : ""}`}
                   style={{ fontFamily: "system-ui, sans-serif" }}
                 />
                 {form.confirm && form.confirm === form.password && (
@@ -241,85 +199,42 @@ export const RegisterPage = () => {
                   </p>
                 )}
               </div>
- 
-              <button
-                onClick={handleNext}
-                className="w-full py-3.5 rounded-xl bg-green-900 text-white font-bold text-sm hover:bg-green-800 transition-colors border-none cursor-pointer mt-1"
-                style={{ fontFamily: "'Georgia', serif" }}
-              >
+              <button onClick={handleNext} className="w-full py-3.5 rounded-xl bg-green-900 text-white font-bold text-sm hover:bg-green-800 transition-colors border-none cursor-pointer mt-1" style={{ fontFamily: "'Georgia', serif" }}>
                 Continue →
               </button>
             </div>
           )}
- 
+
           {/* ── STEP 2 ── */}
           {step === 2 && (
             <div className="grid gap-4">
-              {/* Course */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Course of Study</label>
-                <select
-                  name="course"
-                  value={form.course}
-                  onChange={handleChange}
-                  className={inputClass}
-                  style={{ fontFamily: "system-ui, sans-serif" }}
-                >
+                <select name="course" value={form.course} onChange={handleChange} className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }}>
                   <option value="">Select your course...</option>
-                  {COURSES.filter(Boolean).map((c) => (
-                    <option key={c} value={c}>{c}</option>
-                  ))}
+                  {COURSES.filter(Boolean).map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
- 
-              {/* Location */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Preferred Location</label>
-                <select
-                  name="location"
-                  value={form.location}
-                  onChange={handleChange}
-                  className={inputClass}
-                  style={{ fontFamily: "system-ui, sans-serif" }}
-                >
+                <select name="location" value={form.location} onChange={handleChange} className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }}>
                   <option value="">Select a location...</option>
-                  {["Lagos", "Abuja", "Port Harcourt", "Remote", "Ibadan", "Kano", "Enugu"].map((l) => (
-                    <option key={l} value={l}>{l}</option>
-                  ))}
+                  {["Lagos", "Abuja", "Port Harcourt", "Remote", "Ibadan", "Kano", "Enugu"].map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
- 
-              {/* Terms */}
               <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  name="agreed"
-                  checked={form.agreed}
-                  onChange={handleChange}
-                  className="mt-0.5 w-4 h-4 accent-green-800 cursor-pointer flex-shrink-0"
-                />
+                <input type="checkbox" name="agreed" checked={form.agreed} onChange={handleChange} className="mt-0.5 w-4 h-4 accent-green-800 cursor-pointer flex-shrink-0" />
                 <span className="text-xs text-gray-500 leading-relaxed" style={{ fontFamily: "system-ui, sans-serif" }}>
-                  I agree to the{" "}
-                  <span className="text-green-700 font-semibold cursor-pointer hover:text-green-900">Terms of Service</span>
-                  {" "}and{" "}
-                  <span className="text-green-700 font-semibold cursor-pointer hover:text-green-900">Privacy Policy</span>
+                  I agree to the <span className="text-green-700 font-semibold">Terms of Service</span> and <span className="text-green-700 font-semibold">Privacy Policy</span>
                 </span>
               </label>
- 
               <div className="flex gap-3 mt-1">
-                <button
-                  onClick={() => { setStep(1); setError(""); }}
-                  className="flex-1 py-3.5 rounded-xl border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors bg-white cursor-pointer"
-                  style={{ fontFamily: "system-ui, sans-serif" }}
-                >
+                <button onClick={() => { setStep(1); setError(""); }} className="flex-1 py-3.5 rounded-xl border border-gray-200 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors bg-white cursor-pointer" style={{ fontFamily: "system-ui, sans-serif" }}>
                   ← Back
                 </button>
                 <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className={`flex-1 py-3.5 rounded-xl text-white font-bold text-sm transition-all border-none cursor-pointer ${
-                    loading ? "bg-green-700 opacity-70 cursor-not-allowed" : "bg-green-900 hover:bg-green-800"
-                  }`}
+                  onClick={handleSubmit} disabled={loading}
+                  className={`flex-1 py-3.5 rounded-xl text-white font-bold text-sm transition-all border-none cursor-pointer ${loading ? "bg-green-700 opacity-70 cursor-not-allowed" : "bg-green-900 hover:bg-green-800"}`}
                   style={{ fontFamily: "'Georgia', serif" }}
                 >
                   {loading ? (
@@ -334,14 +249,14 @@ export const RegisterPage = () => {
               </div>
             </div>
           )}
- 
+
           {/* Divider */}
           <div className="flex items-center gap-3 my-6">
             <div className="flex-1 h-px bg-gray-200" />
             <span className="text-xs text-gray-400" style={{ fontFamily: "system-ui, sans-serif" }}>or sign up with</span>
             <div className="flex-1 h-px bg-gray-200" />
           </div>
- 
+
           {/* Google */}
           <button className="w-full flex items-center justify-center gap-3 border border-gray-200 rounded-xl py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors bg-white cursor-pointer" style={{ fontFamily: "system-ui, sans-serif" }}>
             <svg width="18" height="18" viewBox="0 0 24 24">
@@ -352,25 +267,14 @@ export const RegisterPage = () => {
             </svg>
             Continue with Google
           </button>
- 
-          {/* Switch to login */}
+
           <p className="text-center text-sm text-gray-500 mt-6" style={{ fontFamily: "system-ui, sans-serif" }}>
             Already have an account?{" "}
-            <Link
-              to="/login"
-              className="text-green-700 font-semibold hover:text-green-900 no-underline"
-            >
-              Sign in
-            </Link>
+            <Link to="/login" className="text-green-700 font-semibold hover:text-green-900 no-underline">Sign in</Link>
           </p>
         </div>
 
-        {/* Back to home */}
-        <Link
-          to="/"
-          className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 no-underline"
-          style={{ fontFamily: "system-ui, sans-serif" }}
-        >
+        <Link to="/" className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mx-auto mt-5 no-underline" style={{ fontFamily: "system-ui, sans-serif" }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M19 12H5M12 5l-7 7 7 7" />
           </svg>
