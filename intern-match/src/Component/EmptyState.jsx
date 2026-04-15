@@ -127,10 +127,10 @@ export const EmptyState = () => {
         transition={{ delay: 0.8 }}
         className="text-center"
       >
-        <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: "'Georgia', serif" }}>
+        <h3 className="text-lg font-semibold text-[rgb(var(--color-text))] mb-2" style={{ fontFamily: "'Georgia', serif" }}>
           No Internships Found
         </h3>
-        <p className="text-gray-500 text-sm max-w-xs" style={{ fontFamily: "system-ui, sans-serif" }}>
+        <p className="text-[rgb(var(--color-muted))] text-sm max-w-xs" style={{ fontFamily: "system-ui, sans-serif" }}>
           We couldn't find any internships matching your criteria. Try adjusting your filters or check back later.
         </p>
       </motion.div>

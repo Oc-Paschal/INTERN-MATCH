@@ -31,17 +31,17 @@ export const InternshipsPage = () => {
   });
 
   return (
-    <div className="bg-gray-50 min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
+    <div className="bg-[rgb(var(--color-surface))] min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-10">
 
         {/* Heading */}
-        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">Browse Internships</h1>
-        <p className="text-gray-500 mb-7 text-sm" style={{ fontFamily: "system-ui, sans-serif" }}>
+        <h1 className="text-3xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-1">Browse Internships</h1>
+        <p className="text-[rgb(var(--color-muted))] mb-7 text-sm" style={{ fontFamily: "system-ui, sans-serif" }}>
           Discover opportunities matched to your skills and interests
         </p>
 
         {/* Search */}
-        <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-2.5 mb-4">
+        <div className="flex items-center gap-3 bg-[rgb(var(--color-bg))] border border-[rgb(var(--color-border))] rounded-xl px-4 py-2.5 mb-4">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2.5">
             <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
           </svg>
@@ -49,13 +49,13 @@ export const InternshipsPage = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search roles, companies..."
-            className="flex-1 border-none outline-none text-sm bg-transparent"
+            className="flex-1 border-none outline-none text-sm bg-transparent text-[rgb(var(--color-text))]"
             style={{ fontFamily: "system-ui, sans-serif" }}
           />
           {search && (
             <button
               onClick={() => setSearch("")}
-              className="text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer"
+              className="text-[rgb(var(--color-muted))] hover:text-[rgb(var(--color-text))] bg-transparent border-none cursor-pointer"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -73,7 +73,7 @@ export const InternshipsPage = () => {
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition-colors cursor-pointer ${
                 location === l
                   ? "bg-green-900 text-white border-green-900"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
+                  : "bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] border-[rgb(var(--color-border))] hover:border-gray-300"
               }`}
               style={{ fontFamily: "system-ui, sans-serif" }}
             >
@@ -91,7 +91,7 @@ export const InternshipsPage = () => {
               className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors cursor-pointer ${
                 category === c
                   ? "bg-green-900 text-white border-green-900"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
+                  : "bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] border-[rgb(var(--color-border))] hover:border-gray-300"
               }`}
               style={{ fontFamily: "system-ui, sans-serif" }}
             >
@@ -106,8 +106,8 @@ export const InternshipsPage = () => {
             <button
               key={m}
               onClick={() => setViewMode(m)}
-              className={`px-5 py-2 text-sm font-semibold border border-gray-200 transition-colors cursor-pointer ${
-                viewMode === m ? "bg-gray-900 text-white" : "bg-white text-gray-700 hover:bg-gray-50"
+              className={`px-5 py-2 text-sm font-semibold border border-[rgb(var(--color-border))] transition-colors cursor-pointer ${
+                viewMode === m ? "bg-gray-900 text-white" : "bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] hover:bg-[rgb(var(--color-surface))]"
               } ${m === "list" ? "rounded-l-lg" : "rounded-r-lg"}`}
               style={{ fontFamily: "system-ui, sans-serif" }}
             >
@@ -119,16 +119,16 @@ export const InternshipsPage = () => {
         {/* ── Map View ── */}
         {viewMode === "map" && (
           <>
-            <div className="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-2.5 mb-3">
+            <div className="flex items-center gap-3 bg-[rgb(var(--color-bg))] border border-[rgb(var(--color-border))] rounded-xl px-4 py-2.5 mb-3">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2.5">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
               <input
                 placeholder="Search by role or company..."
-                className="flex-1 border-none outline-none text-sm bg-transparent"
+                className="flex-1 border-none outline-none text-sm bg-transparent text-[rgb(var(--color-text))]"
                 style={{ fontFamily: "system-ui, sans-serif" }}
               />
-              <button className="border border-gray-200 rounded-lg px-3 py-1 text-xs text-gray-700 hover:bg-gray-50 cursor-pointer bg-transparent">
+              <button className="border border-[rgb(var(--color-border))] rounded-lg px-3 py-1 text-xs text-[rgb(var(--color-text))] hover:bg-[rgb(var(--color-surface))] cursor-pointer bg-transparent">
                 ◈ My Location
               </button>
             </div>
@@ -141,7 +141,7 @@ export const InternshipsPage = () => {
                   className={`px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap transition-colors cursor-pointer ${
                     courseFilter === c
                       ? "bg-green-900 text-white border-green-900"
-                      : "bg-white text-gray-700 border-gray-200 hover:border-gray-300"
+                      : "bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] border-[rgb(var(--color-border))] hover:border-gray-300"
                   }`}
                   style={{ fontFamily: "system-ui, sans-serif" }}
                 >
@@ -150,7 +150,7 @@ export const InternshipsPage = () => {
               ))}
             </div>
 
-            <p className="text-sm text-gray-500 mb-3" style={{ fontFamily: "system-ui, sans-serif" }}>
+            <p className="text-sm text-[rgb(var(--color-muted))] mb-3" style={{ fontFamily: "system-ui, sans-serif" }}>
               📍 12 internships on map
             </p>
             <MapView />
@@ -160,7 +160,7 @@ export const InternshipsPage = () => {
         {/* ── List View ── */}
         {viewMode === "list" && (
           <>
-            <p className="text-sm text-gray-500 mb-4" style={{ fontFamily: "system-ui, sans-serif" }}>
+            <p className="text-sm text-[rgb(var(--color-muted))] mb-4" style={{ fontFamily: "system-ui, sans-serif" }}>
               {filtered.length} internship{filtered.length !== 1 ? "s" : ""} found
             </p>
             {filtered.length === 0 ? (

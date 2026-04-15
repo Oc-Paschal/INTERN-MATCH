@@ -13,15 +13,15 @@ const EmptyFavourites = ({ onBrowse }) => (
     animate={{ opacity: 1, y: 0 }}
     className="flex flex-col items-center justify-center py-24 text-center"
   >
-    <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-5">
+    <div className="w-20 h-20 bg-red-50 dark:bg-red-900 rounded-full flex items-center justify-center mb-5">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="1.5">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     </div>
-    <h2 className="text-xl font-extrabold text-gray-900 mb-2" style={{ fontFamily: "'Georgia', serif" }}>
+    <h2 className="text-xl font-extrabold text-[rgb(var(--color-text))] mb-2" style={{ fontFamily: "'Georgia', serif" }}>
       No saved internships yet
     </h2>
-    <p className="text-sm text-gray-500 max-w-xs mb-6" style={{ fontFamily: "system-ui, sans-serif" }}>
+    <p className="text-sm text-[rgb(var(--color-muted))] max-w-xs mb-6" style={{ fontFamily: "system-ui, sans-serif" }}>
       Tap the heart icon on any internship to save it here for later.
     </p>
     <button
@@ -41,7 +41,7 @@ const FavouriteCard = ({ intern, onRemove, onView }) => (
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
     exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-    className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200"
+    className="bg-[rgb(var(--color-bg))] rounded-2xl border border-[rgb(var(--color-border))] overflow-hidden hover:shadow-lg transition-shadow duration-200"
   >
     {/* Coloured top strip based on match */}
     <div className={`h-1.5 w-full ${
@@ -60,10 +60,10 @@ const FavouriteCard = ({ intern, onRemove, onView }) => (
             </svg>
           </div>
           <div>
-            <p className="font-bold text-gray-900 text-sm leading-tight" style={{ fontFamily: "'Georgia', serif" }}>
+            <p className="font-bold text-[rgb(var(--color-text))] text-sm leading-tight" style={{ fontFamily: "'Georgia', serif" }}>
               {intern.title}
             </p>
-            <p className="text-xs text-gray-500 mt-0.5">{intern.company}</p>
+            <p className="text-xs text-[rgb(var(--color-muted))] mt-0.5">{intern.company}</p>
           </div>
         </div>
 
@@ -84,17 +84,17 @@ const FavouriteCard = ({ intern, onRemove, onView }) => (
       <div className="flex items-center gap-2 flex-wrap mb-3">
         <MatchBadge match={intern.match} />
         <TypeBadge type={intern.type} />
-        <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">
+        <span className="text-xs bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] px-2 py-0.5 rounded-full font-medium">
           {intern.category}
         </span>
       </div>
 
       {/* Meta */}
       <div className="flex items-center gap-3 mb-4 flex-wrap">
-        <span className="text-xs text-gray-500" style={{ fontFamily: "system-ui, sans-serif" }}>
+        <span className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
           📍 {intern.location}
         </span>
-        <span className="text-xs text-gray-500" style={{ fontFamily: "system-ui, sans-serif" }}>
+        <span className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
           🕐 {intern.posted}
         </span>
       </div>
@@ -102,14 +102,14 @@ const FavouriteCard = ({ intern, onRemove, onView }) => (
       {/* Skills */}
       <div className="flex gap-1.5 flex-wrap mb-4">
         {intern.skills.map((s) => (
-          <span key={s} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md" style={{ fontFamily: "system-ui, sans-serif" }}>
+          <span key={s} className="bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] text-xs px-2 py-1 rounded-md" style={{ fontFamily: "system-ui, sans-serif" }}>
             {s}
           </span>
         ))}
       </div>
 
       {/* Actions */}
-      <div className="flex gap-2 pt-3 border-t border-gray-100">
+      <div className="flex gap-2 pt-3 border-t border-[rgb(var(--color-border))]">
         <button
           onClick={() => onView(intern.id)}
           className="flex-1 py-2.5 bg-green-900 text-white text-sm font-bold rounded-xl hover:bg-green-800 transition-colors border-none cursor-pointer"
@@ -119,7 +119,7 @@ const FavouriteCard = ({ intern, onRemove, onView }) => (
         </button>
         <button
           onClick={() => onView(intern.id)}
-          className="px-4 py-2.5 border border-gray-200 text-gray-700 text-sm font-semibold rounded-xl hover:bg-gray-50 transition-colors bg-white cursor-pointer"
+          className="px-4 py-2.5 border border-[rgb(var(--color-border))] text-[rgb(var(--color-text))] text-sm font-semibold rounded-xl hover:bg-[rgb(var(--color-surface))] transition-colors bg-[rgb(var(--color-bg))] cursor-pointer"
           style={{ fontFamily: "system-ui, sans-serif" }}
         >
           Apply →
@@ -150,16 +150,16 @@ export const FavouritesPage = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
+    <div className="bg-[rgb(var(--color-surface))] min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
       <div className="max-w-5xl mx-auto px-4 md:px-8 py-10">
 
         {/* Header */}
         <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-1">
+            <h1 className="text-3xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-1">
               Saved Internships
             </h1>
-            <p className="text-sm text-gray-500" style={{ fontFamily: "system-ui, sans-serif" }}>
+            <p className="text-sm text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
               {favorites.length > 0
                 ? `You have ${favorites.length} saved internship${favorites.length !== 1 ? "s" : ""}`
                 : "Internships you save will appear here"}
@@ -193,25 +193,25 @@ export const FavouritesPage = () => {
               {
                 label: "Total Saved",
                 value: favorites.length,
-                color: "text-gray-900",
-                bg: "bg-white",
+                color: "text-[rgb(var(--color-text))]",
+                bg: "bg-[rgb(var(--color-bg))]",
               },
               {
                 label: "High Match (85%+)",
                 value: favorites.filter((f) => f.match >= 85).length,
                 color: "text-green-700",
-                bg: "bg-green-50",
+                bg: "bg-green-50 dark:bg-green-900",
               },
               {
                 label: "Remote Roles",
                 value: favorites.filter((f) => f.type === "Remote").length,
                 color: "text-blue-700",
-                bg: "bg-blue-50",
+                bg: "bg-blue-50 dark:bg-blue-900",
               },
             ].map(({ label, value, color, bg }) => (
-              <div key={label} className={`${bg} rounded-2xl p-4 border border-gray-100 text-center`}>
+              <div key={label} className={`${bg} rounded-2xl p-4 border border-[rgb(var(--color-border))] text-center`}>
                 <p className={`text-2xl font-extrabold ${color}`}>{value}</p>
-                <p className="text-xs text-gray-500 mt-1" style={{ fontFamily: "system-ui, sans-serif" }}>{label}</p>
+                <p className="text-xs text-[rgb(var(--color-muted))] mt-1" style={{ fontFamily: "system-ui, sans-serif" }}>{label}</p>
               </div>
             ))}
           </motion.div>

@@ -40,12 +40,12 @@ const StatCounter = ({ target, suffix, label }) => {
   const { count, ref } = useCountUp(target);
   return (
     <div ref={ref}>
-      <p className="text-2xl font-extrabold text-gray-900">
+      <p className="text-2xl font-extrabold text-[rgb(var(--color-text))]">
         {count.toLocaleString()}
         {suffix}
       </p>
       <p
-        className="text-xs text-gray-500 mt-0.5"
+        className="text-xs text-[rgb(var(--color-muted))] mt-0.5"
         style={{ fontFamily: "system-ui, sans-serif" }}
       >
         {label}
@@ -80,10 +80,10 @@ const features = [
 export const HomePage = () => (
   <div style={{ fontFamily: "'Georgia', serif" }}>
     {/* ── Hero ── */}
-    <section className="bg-linear-to-br from-green-50 via-emerald-50 to-white px-6 md:px-16 py-20">
+    <section className="bg-linear-to-br from-green-50 via-emerald-50 to-[rgb(var(--color-bg))] dark:from-green-950 dark:via-emerald-950 dark:to-[rgb(var(--color-bg))] px-6 md:px-16 py-20">
       <div className="max-w-3xl mx-auto">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-white border border-green-200 rounded-full px-4 py-1.5 mb-7">
+        <div className="inline-flex items-center gap-2 bg-[rgb(var(--color-bg))] border border-green-200 dark:border-green-800 rounded-full px-4 py-1.5 mb-7">
           <svg
             width="13"
             height="13"
@@ -101,13 +101,13 @@ export const HomePage = () => (
 
         {/* Heading */}
         <div></div>
-        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight mb-5">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-[rgb(var(--color-text))] tracking-tight mb-5">
           Find Your Perfect <br />
-          <span className="text-green-800">Internship</span> Match in Nigeria
+          <span className="text-green-800 dark:text-green-400">Internship</span> Match in Nigeria
         </h1>
 
         <p
-          className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed mb-9 font-normal"
+          className="text-base md:text-lg text-[rgb(var(--color-muted))] max-w-xl leading-relaxed mb-9 font-normal"
           style={{ fontFamily: "system-ui, sans-serif" }}
         >
           Smart matching connects Nigerian students with top internship
@@ -124,7 +124,7 @@ export const HomePage = () => (
           </Link>
           <Link
             to="/profile"
-            className="bg-white text-gray-800 font-semibold px-6 py-3 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-colors no-underline"
+            className="bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] font-semibold px-6 py-3 rounded-xl border-2 border-[rgb(var(--color-border))] hover:border-gray-300 transition-colors no-underline"
           >
             Create Your Profile
           </Link>
@@ -140,12 +140,12 @@ export const HomePage = () => (
     </section>
 
     {/* ── Why Section ── */}
-    <section className="bg-white px-6 md:px-16 py-20 text-center">
-      <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight mb-3">
+    <section className="bg-[rgb(var(--color-bg))] px-6 md:px-16 py-20 text-center">
+      <h2 className="text-3xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-3">
         Why InternMatch NG?
       </h2>
       <p
-        className="text-gray-500 mb-14"
+        className="text-[rgb(var(--color-muted))] mb-14"
         style={{ fontFamily: "system-ui, sans-serif" }}
       >
         Built for Nigerian students, powered by AI, designed for real-world
@@ -156,14 +156,14 @@ export const HomePage = () => (
         {features.map((f) => (
           <div
             key={f.title}
-            className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-left"
+            className="bg-[rgb(var(--color-surface))] border border-[rgb(var(--color-border))] rounded-2xl p-6 text-left"
           >
-            <div className="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center text-green-800 text-xl mb-4">
+            <div className="w-11 h-11 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center text-green-800 dark:text-green-300 text-xl mb-4">
               {f.icon}
             </div>
-            <p className="font-bold text-gray-900 mb-2">{f.title}</p>
+            <p className="font-bold text-[rgb(var(--color-text))] mb-2">{f.title}</p>
             <p
-              className="text-sm text-gray-500 leading-relaxed"
+              className="text-sm text-[rgb(var(--color-muted))] leading-relaxed"
               style={{ fontFamily: "system-ui, sans-serif" }}
             >
               {f.desc}

@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bg: 255 255 255;
+  --color-surface: 243 244 246;
+  --color-border: 229 231 235;
+  --color-text: 17 24 39;
+  --color-muted: 107 114 128;
+}
+
+.dark {
+  --color-bg: 17 24 32;
+  --color-surface: 31 41 55;
+  --color-border: 55 65 81;
+  --color-text: 243 244 246;
+  --color-muted: 156 163 175;
+}
+
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+html, body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+}
