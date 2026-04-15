@@ -8,15 +8,15 @@ const Logo = () => (
         <line x1="10" y1="14" x2="14" y2="14" />
       </svg>
     </div>
-    <span className="text-sm font-bold text-gray-900 tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
+    <span className="text-sm font-bold text-[rgb(var(--color-text))] tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
       InternMatch NG
     </span>
   </div>
 );
  
 export const Footer = () => (
-  <footer className="bg-white border-t border-gray-200 py-6 flex flex-col items-center gap-1 mt-10">
+  <footer className="bg-[rgb(var(--color-bg))] border-t border-[rgb(var(--color-border))] py-6 flex flex-col items-center gap-1 mt-10">
     <Logo />
-    <p className="text-xs text-gray-400">© 2026 InternMatch NG. Built for Nigerian students.</p>
+    <p className="text-xs text-[rgb(var(--color-muted))]">© 2026 InternMatch NG. Built for Nigerian students.</p>
   </footer>
 );

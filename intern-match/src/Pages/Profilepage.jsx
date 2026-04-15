@@ -16,7 +16,7 @@ const FloatingInput = ({ label, value, onChange, placeholder, type = "text" }) =
         className={`absolute left-4 transition-all duration-200 pointer-events-none ${
           focused || hasValue
             ? "top-1.5 text-xs text-green-700"
-            : "top-1/2 -translate-y-1/2 text-sm text-gray-400"
+            : "top-1/2 -translate-y-1/2 text-sm text-[rgb(var(--color-muted))]"
         }`}
         style={{ fontFamily: "system-ui, sans-serif" }}
       >
@@ -29,8 +29,8 @@ const FloatingInput = ({ label, value, onChange, placeholder, type = "text" }) =
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         placeholder={focused ? "" : placeholder}
-        className={`w-full border rounded-lg px-4 pt-5 pb-2 text-sm outline-none transition-colors bg-white ${
-          focused ? "border-green-600 ring-2 ring-green-100" : "border-gray-200"
+        className={`w-full border rounded-lg px-4 pt-5 pb-2 text-sm outline-none transition-colors bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] ${
+          focused ? "border-green-600 ring-2 ring-green-100" : "border-[rgb(var(--color-border))]"
         }`}
         style={{ fontFamily: "system-ui, sans-serif" }}
       />
@@ -42,13 +42,13 @@ const SectionCard = ({ icon, title, children }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    className="bg-white rounded-2xl p-6 mb-5 border border-gray-200"
+    className="bg-[rgb(var(--color-bg))] rounded-2xl p-6 mb-5 border border-[rgb(var(--color-border))]"
   >
     <div className="flex items-center gap-3 mb-5">
-      <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center text-green-800">
+      <div className="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-xl flex items-center justify-center text-green-800 dark:text-green-300">
         <span className="text-lg">{icon}</span>
       </div>
-      <h2 className="text-base font-bold text-gray-900">{title}</h2>
+      <h2 className="text-base font-bold text-[rgb(var(--color-text))]">{title}</h2>
     </div>
     {children}
   </motion.div>
@@ -135,21 +135,21 @@ export const ProfilePage = () => {
   const progressColor = progress === 100 ? "bg-green-500" : progress > 50 ? "bg-green-400" : "bg-yellow-400";
 
   return (
-    <div className="bg-gray-50 min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
+    <div className="bg-[rgb(var(--color-surface))] min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
       <div className="max-w-2xl mx-auto px-4 py-10">
         {/* Header with progress */}
         <div className="mb-8">
-          <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight mb-4">Your Profile</h1>
+          <h1 className="text-2xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-4">Your Profile</h1>
           
           {/* Progress bar */}
-          <div className="bg-white rounded-xl p-4 border border-gray-200">
+          <div className="bg-[rgb(var(--color-bg))] rounded-xl p-4 border border-[rgb(var(--color-border))]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-gray-700" style={{ fontFamily: "system-ui, sans-serif" }}>
+              <span className="text-sm font-medium text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
                 Profile Completion
               </span>
-              <span className="text-sm font-bold text-gray-900">{progress}%</span>
+              <span className="text-sm font-bold text-[rgb(var(--color-text))]">{progress}%</span>
             </div>
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+            <div className="h-2 bg-[rgb(var(--color-surface))] rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
@@ -158,7 +158,7 @@ export const ProfilePage = () => {
               />
             </div>
             {progress < 100 && (
-              <p className="text-xs text-gray-500 mt-2" style={{ fontFamily: "system-ui, sans-serif" }}>
+              <p className="text-xs text-[rgb(var(--color-muted))] mt-2" style={{ fontFamily: "system-ui, sans-serif" }}>
                 Complete all fields to get better internship matches
               </p>
             )}
@@ -169,11 +169,11 @@ export const ProfilePage = () => {
         <SectionCard icon="👤" title="Profile Photo">
           <div className="flex items-center gap-6">
             <div className="relative">
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-100 border-4 border-white shadow-md">
+              <div className="w-24 h-24 rounded-full overflow-hidden bg-[rgb(var(--color-surface))] border-4 border-[rgb(var(--color-bg))] shadow-md">
                 {avatar ? (
                   <img src={avatar} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  <div className="w-full h-full flex items-center justify-center text-[rgb(var(--color-muted))]">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx="12" cy="7" r="4" />
@@ -198,8 +198,8 @@ export const ProfilePage = () => {
               />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900 mb-1">Profile Photo</p>
-              <p className="text-xs text-gray-500" style={{ fontFamily: "system-ui, sans-serif" }}>
+              <p className="text-sm font-medium text-[rgb(var(--color-text))] mb-1">Profile Photo</p>
+              <p className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
                 JPG, PNG up to 2MB
               </p>
             </div>
@@ -243,13 +243,13 @@ export const ProfilePage = () => {
               placeholder="Immediately / June 2026"
             />
             <div>
-              <label className="block text-xs font-semibold text-gray-700 mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Bio</label>
+              <label className="block text-xs font-semibold text-[rgb(var(--color-text))] mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Bio</label>
               <textarea
                 value={profile.bio}
                 onChange={(e) => updateProfile("bio", e.target.value)}
                 placeholder="Tell companies about yourself, your goals, and what you're looking for..."
                 rows={4}
-                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all resize-y"
+                className="w-full border border-[rgb(var(--color-border))] rounded-lg px-4 py-3 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all resize-y bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))]"
                 style={{ fontFamily: "system-ui, sans-serif" }}
               />
             </div>
@@ -265,12 +265,12 @@ export const ProfilePage = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
-                className="flex items-center gap-1.5 bg-green-50 text-green-800 border border-green-200 text-xs font-semibold px-3 py-1.5 rounded-full"
+                className="flex items-center gap-1.5 bg-green-50 dark:bg-green-900 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-700 text-xs font-semibold px-3 py-1.5 rounded-full"
               >
                 {s}
                 <button
                   onClick={() => removeSkill(s)}
-                  className="text-green-600 bg-transparent border-none cursor-pointer text-sm leading-none p-0 hover:text-green-900"
+                  className="text-green-600 dark:text-green-400 bg-transparent border-none cursor-pointer text-sm leading-none p-0 hover:text-green-900 dark:hover:text-green-200"
                 >
                   ×
                 </button>
@@ -284,7 +284,7 @@ export const ProfilePage = () => {
               onChange={(e) => setSkillInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addSkill(skillInput)}
               placeholder="Add a skill..."
-              className="flex-1 border border-gray-200 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all"
+              className="flex-1 border border-[rgb(var(--color-border))] rounded-lg px-4 py-2.5 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))]"
               style={{ fontFamily: "system-ui, sans-serif" }}
             />
             <button
@@ -296,12 +296,12 @@ export const ProfilePage = () => {
           </div>
 
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-xs text-gray-400" style={{ fontFamily: "system-ui, sans-serif" }}>Popular:</span>
+            <span className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>Popular:</span>
             {SUGGESTED_SKILLS.filter((s) => !skills.includes(s)).slice(0, 6).map((s) => (
               <button
                 key={s}
                 onClick={() => addSkill(s)}
-                className="text-xs font-medium text-gray-500 bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded-md transition-colors cursor-pointer border-none"
+                className="text-xs font-medium text-[rgb(var(--color-muted))] bg-[rgb(var(--color-surface))] hover:bg-[rgb(var(--color-border))] px-2 py-1 rounded-md transition-colors cursor-pointer border-none"
                 style={{ fontFamily: "system-ui, sans-serif" }}
               >
                 + {s}

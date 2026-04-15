@@ -22,7 +22,7 @@ export const InternshipCard = ({ intern }) => {
       whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.98 }}
       onClick={() => navigate(`/internships/${intern.id}`)}
-      className="bg-white rounded-2xl p-5 border border-gray-200 cursor-pointer hover:shadow-lg transition-shadow duration-200 flex flex-col gap-3"
+      className="bg-[rgb(var(--color-bg))] rounded-2xl p-5 border border-[rgb(var(--color-border))] cursor-pointer hover:shadow-lg transition-shadow duration-200 flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -44,21 +44,21 @@ export const InternshipCard = ({ intern }) => {
       </div>
 
       <div>
-        <p className="font-bold text-gray-900 text-base" style={{ fontFamily: "'Georgia', serif" }}>
+        <p className="font-bold text-[rgb(var(--color-text))] text-base" style={{ fontFamily: "'Georgia', serif" }}>
           {intern.title}
         </p>
-        <p className="text-sm text-gray-500 mt-0.5">{intern.company}</p>
+        <p className="text-sm text-[rgb(var(--color-muted))] mt-0.5">{intern.company}</p>
       </div>
 
       <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-xs text-gray-500">📍 {intern.location}</span>
-        <span className="text-xs text-gray-500">🕐 {intern.posted}</span>
+        <span className="text-xs text-[rgb(var(--color-muted))]">📍 {intern.location}</span>
+        <span className="text-xs text-[rgb(var(--color-muted))]">🕐 {intern.posted}</span>
         <TypeBadge type={intern.type} />
       </div>
 
       <div className="flex gap-2 flex-wrap">
         {intern.skills.map((s) => (
-          <span key={s} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded-md">
+          <span key={s} className="bg-[rgb(var(--color-surface))] text-[rgb(var(--color-text))] text-xs px-2 py-1 rounded-md">
             {s}
           </span>
         ))}
