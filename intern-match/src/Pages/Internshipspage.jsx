@@ -5,6 +5,7 @@ import { InternshipCard } from "../Component/InternshipCard";
 import { MapView } from "../Component/Mapview";
 import { Footer } from "../Component/Shared/Footer";
 import { EmptyState } from "../Component/EmptyState";
+import { useEmployer } from "../context/EmployerContext";
 
 const LOCATIONS  = ["All Locations", "Lagos", "Abuja", "Remote", "Port Harcourt"];
 const CATEGORIES = ["All", "Engineering", "Design", "Data", "Marketing", "Operations"];
@@ -13,14 +14,37 @@ const COURSES    = [
   "Fine Arts", "Marketing", "Accounting", "Civil Engineering", "Electrical Engineering",
 ];
 
+const generateMatch = () => Math.floor(Math.random() * (95 - 70 + 1)) + 70;
+
+const formatEmployerJob = (job) => ({
+  id: job.id,
+  title: job.title,
+  company: "Your Company",
+  location: job.location,
+  type: job.type,
+  category: job.category,
+  posted: job.posted,
+  skills: job.skills,
+  match: job.match || generateMatch(),
+  deadline: job.deadline,
+  isEmployerPosted: true,
+});
+
 export const InternshipsPage = () => {
   const [search, setSearch]             = useState("");
   const [location, setLocation]         = useState("All Locations");
   const [category, setCategory]         = useState("All");
   const [viewMode, setViewMode]         = useState("list");
   const [courseFilter, setCourseFilter] = useState("All Courses");
+  const { jobs: employerJobs }           = useEmployer();
 
-  const filtered = internshipsData.filter((i) => {
+  const activeEmployerJobs = employerJobs
+    .filter((j) => j.status === "active")
+    .map(formatEmployerJob);
+
+  const allInternships = [...activeEmployerJobs, ...internshipsData];
+
+  const filtered = allInternships.filter((i) => {
     const matchSearch =
       !search ||
       i.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -151,7 +175,7 @@ export const InternshipsPage = () => {
             </div>
 
             <p className="text-sm text-[rgb(var(--color-muted))] mb-3" style={{ fontFamily: "system-ui, sans-serif" }}>
-              📍 12 internships on map
+              📍 {filtered.length} internship{filtered.length !== 1 ? "s" : ""} on map
             </p>
             <MapView />
           </>
