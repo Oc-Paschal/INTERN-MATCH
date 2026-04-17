@@ -140,7 +140,7 @@ export const HomePage = () => (
     </section>
 
     {/* ── Why Section ── */}
-    <section className="bg-[rgb(var(--color-bg))] px-6 md:px-16 py-20 text-center">
+    <section className="bg-linear-to-br from-green-50 via-emerald-50 to-[rgb(var(--color-bg))] dark:from-green-950 dark:via-emerald-950 dark:to-[rgb(var(--color-bg))] px-6 md:px-16 py-20 text-center">
       <h2 className="text-3xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-3">
         Why InternMatch NG?
       </h2>
@@ -174,7 +174,7 @@ export const HomePage = () => (
     </section>
 
     {/* ── CTA Banner ── */}
-    <section className="bg-linear-to-br from-green-900 to-green-950 px-6 py-20 text-center">
+    <section className="bg-linear-to-br from-green-900 to-green-950 dark:from-green-950 dark:via-emerald-950 dark:to-[rgb(var(--color-bg))]  px-6 py-20 text-center">
       <h2 className="text-3xl font-extrabold text-white tracking-tight mb-3">
         Ready to Land Your Dream Internship?
       </h2>

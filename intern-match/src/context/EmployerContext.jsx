@@ -1,9 +1,10 @@
 // src/context/EmployerContext.jsx
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const EmployerContext = createContext(null);
 
-// Sample posted jobs with applicants
+const STORAGE_KEY = "employer_posted_jobs";
+
 const SAMPLE_JOBS = [
   {
     id: 101,
@@ -66,8 +67,32 @@ const SAMPLE_JOBS = [
   },
 ];
 
+const loadJobsFromStorage = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveJobsToStorage = (jobs) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+  } catch {
+    console.warn("Failed to save jobs to localStorage");
+  }
+};
+
 export const EmployerProvider = ({ children }) => {
-  const [jobs, setJobs] = useState(SAMPLE_JOBS);
+  const [jobs, setJobs] = useState(() => {
+    const stored = loadJobsFromStorage();
+    return stored.length > 0 ? stored : SAMPLE_JOBS;
+  });
+
+  useEffect(() => {
+    saveJobsToStorage(jobs);
+  }, [jobs]);
 
   const addJob = (job) => {
     const newJob = {
