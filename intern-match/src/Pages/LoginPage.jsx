@@ -103,7 +103,7 @@ export const LoginPage = () => {
               <input
                 type="email" name="email" value={form.email}
                 onChange={handleChange} placeholder="you@example.com"
-                className={inputClass} style={{ fontFamily: "system-ui, sans-serif" }}
+                className={`${inputClass} text-black`} style={{ fontFamily: "system-ui, sans-serif" }}
               />
             </div>
 
@@ -125,7 +125,7 @@ export const LoginPage = () => {
                   type={showPass ? "text" : "password"} name="password"
                   value={form.password} onChange={handleChange}
                   placeholder="Enter your password"
-                  className={`${inputClass} pr-11`} style={{ fontFamily: "system-ui, sans-serif" }}
+                  className={`${inputClass} pr-11 text-black`} style={{ fontFamily: "system-ui, sans-serif" }}
                 />
                 <button onClick={() => setShowPass(!showPass)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 bg-transparent border-none cursor-pointer">
                   {showPass ? (
