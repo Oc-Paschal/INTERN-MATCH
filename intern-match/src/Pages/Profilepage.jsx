@@ -9,12 +9,13 @@ const SUGGESTED_SKILLS = ["JavaScript", "Figma", "Node.js", "SQL", "Django", "Fl
 const FloatingInput = ({ label, value, onChange, placeholder, type = "text" }) => {
   const [focused, setFocused] = useState(false);
   const hasValue = value && value.length > 0;
+  const isFloated = focused || hasValue;
 
   return (
     <div className="relative">
       <label
-        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
-          focused || hasValue
+        className={`absolute left-4 transition-all duration-200 pointer-events-none z-10 ${
+          isFloated
             ? "top-1.5 text-xs text-green-700"
             : "top-1/2 -translate-y-1/2 text-sm text-[rgb(var(--color-muted))]"
         }`}
@@ -28,8 +29,8 @@ const FloatingInput = ({ label, value, onChange, placeholder, type = "text" }) =
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        placeholder={focused ? "" : placeholder}
-        className={`w-full border rounded-lg px-4 pt-5 pb-2 text-sm outline-none transition-colors bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] ${
+        placeholder={isFloated ? placeholder : ""}
+        className={`w-full border rounded-lg px-4 pt-6 pb-2 text-sm outline-none transition-colors bg-[rgb(var(--color-bg))] text-[rgb(var(--color-text))] ${
           focused ? "border-green-600 ring-2 ring-green-100" : "border-[rgb(var(--color-border))]"
         }`}
         style={{ fontFamily: "system-ui, sans-serif" }}
@@ -58,7 +59,7 @@ export const ProfilePage = () => {
   const { user, login } = useAuth();
   const { addToast } = useToast();
   const fileInputRef = useRef(null);
-  
+
   const [avatar, setAvatar] = useState(user?.avatar || null);
   const [skills, setSkills] = useState(user?.skills || []);
   const [skillInput, setSkillInput] = useState("");
@@ -132,7 +133,8 @@ export const ProfilePage = () => {
     setTimeout(() => setSaved(false), 2000);
   };
 
-  const progressColor = progress === 100 ? "bg-green-500" : progress > 50 ? "bg-green-400" : "bg-yellow-400";
+  const progressColor =
+    progress === 100 ? "bg-green-500" : progress > 50 ? "bg-green-400" : "bg-yellow-400";
 
   return (
     <div className="bg-[rgb(var(--color-surface))] min-h-screen" style={{ fontFamily: "'Georgia', serif" }}>
@@ -140,11 +142,14 @@ export const ProfilePage = () => {
         {/* Header with progress */}
         <div className="mb-8">
           <h1 className="text-2xl font-extrabold text-[rgb(var(--color-text))] tracking-tight mb-4">Your Profile</h1>
-          
+
           {/* Progress bar */}
           <div className="bg-[rgb(var(--color-bg))] rounded-xl p-4 border border-[rgb(var(--color-border))]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm font-medium text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
+              <span
+                className="text-sm font-medium text-[rgb(var(--color-muted))]"
+                style={{ fontFamily: "system-ui, sans-serif" }}
+              >
                 Profile Completion
               </span>
               <span className="text-sm font-bold text-[rgb(var(--color-text))]">{progress}%</span>
@@ -158,7 +163,10 @@ export const ProfilePage = () => {
               />
             </div>
             {progress < 100 && (
-              <p className="text-xs text-[rgb(var(--color-muted))] mt-2" style={{ fontFamily: "system-ui, sans-serif" }}>
+              <p
+                className="text-xs text-[rgb(var(--color-muted))] mt-2"
+                style={{ fontFamily: "system-ui, sans-serif" }}
+              >
                 Complete all fields to get better internship matches
               </p>
             )}
@@ -243,7 +251,12 @@ export const ProfilePage = () => {
               placeholder="Immediately / June 2026"
             />
             <div>
-              <label className="block text-xs font-semibold text-[rgb(var(--color-text))] mb-1.5" style={{ fontFamily: "system-ui, sans-serif" }}>Bio</label>
+              <label
+                className="block text-xs font-semibold text-[rgb(var(--color-text))] mb-1.5"
+                style={{ fontFamily: "system-ui, sans-serif" }}
+              >
+                Bio
+              </label>
               <textarea
                 value={profile.bio}
                 onChange={(e) => updateProfile("bio", e.target.value)}
@@ -296,17 +309,21 @@ export const ProfilePage = () => {
           </div>
 
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>Popular:</span>
-            {SUGGESTED_SKILLS.filter((s) => !skills.includes(s)).slice(0, 6).map((s) => (
-              <button
-                key={s}
-                onClick={() => addSkill(s)}
-                className="text-xs font-medium text-[rgb(var(--color-muted))] bg-[rgb(var(--color-surface))] hover:bg-[rgb(var(--color-border))] px-2 py-1 rounded-md transition-colors cursor-pointer border-none"
-                style={{ fontFamily: "system-ui, sans-serif" }}
-              >
-                + {s}
-              </button>
-            ))}
+            <span className="text-xs text-[rgb(var(--color-muted))]" style={{ fontFamily: "system-ui, sans-serif" }}>
+              Popular:
+            </span>
+            {SUGGESTED_SKILLS.filter((s) => !skills.includes(s))
+              .slice(0, 6)
+              .map((s) => (
+                <button
+                  key={s}
+                  onClick={() => addSkill(s)}
+                  className="text-xs font-medium text-[rgb(var(--color-muted))] bg-[rgb(var(--color-surface))] hover:bg-[rgb(var(--color-border))] px-2 py-1 rounded-md transition-colors cursor-pointer border-none"
+                  style={{ fontFamily: "system-ui, sans-serif" }}
+                >
+                  + {s}
+                </button>
+              ))}
           </div>
         </SectionCard>
 
