@@ -43,7 +43,7 @@ export const EmployerRegisterPage = () => {
     industry: "", size: "", website: "", location: "", agreed: false,
   });
 
-  const inputClass = "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all bg-white";
+  const inputClass = "w-full border border-gray-200 text-black rounded-xl px-4 py-3 text-sm outline-none focus:border-green-700 focus:ring-2 focus:ring-green-100 transition-all bg-white";
 
   const handleChange = (e) => {
     setError("");
