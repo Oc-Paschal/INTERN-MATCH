@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
@@ -93,14 +93,6 @@ export const ProfilePage = () => {
   };
 
   const progress = calculateProgress();
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      login({ ...user, ...profile, skills, avatar });
-    }, 2000);
-    return () => clearTimeout(timeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profile, skills, avatar]);
 
   const updateProfile = (field, value) => {
     setProfile({ ...profile, [field]: value });
